@@ -1,0 +1,218 @@
+# vars
+CONFIGDIR="${HOME}/dev/configs"
+IS_WSL=false
+if uname -r | grep -q 'microsoft'; then
+  IS_WSL=true
+  export WHOME=/mnt/c/Users/ahal
+fi
+
+# zsh
+source "${HOME}/.zgenom/zgenom.zsh"
+alias zgen=zgenom
+
+zgen autoupdate --background
+if ! zgen saved; then
+    # plugins
+    zgen load zsh-users/zsh-syntax-highlighting
+    zgen load zsh-users/zsh-history-substring-search
+
+    if $IS_WSL; then
+        zgen load bobsoppe/zsh-ssh-agent
+    fi
+
+    # completions
+    zgen load zsh-users/zsh-completions src
+    zgen load "${CONFIGDIR}/zsh/completion.zsh"
+
+    # theme
+    zgen load "${CONFIGDIR}/zsh/theme-and-appearance.zsh"
+    zgen load "${CONFIGDIR}/zsh/ahal.zsh-theme"
+
+    # history
+    zgen load "${CONFIGDIR}/zsh/history.zsh"
+
+    # save all to init script
+    zgen save
+fi
+
+unsetopt correct_all
+setopt no_banghist
+
+# vim mode config
+# ---------------
+
+# Activate vim mode.
+bindkey -v
+
+# Remove mode switching delay.
+KEYTIMEOUT=5
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+
+# Use beam shape cursor on startup.
+echo -ne '\e[5 q'
+
+# Use beam shape cursor for each new prompt.
+preexec() {
+   echo -ne '\e[5 q'
+}
+
+# history-substring-search bindkings
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+# source
+setopt PROMPT_SUBST
+source "${CONFIGDIR}/scripts/scm-prompt.sh"
+#source `which mozconfigwrapper.sh`
+
+# tab completion
+# pip zsh completion
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] ) )
+}
+compctl -K _pip_completion pip
+
+fpath+="${HOME}/.zfunc"
+fpath+="${HOME}/.zgen/zsh-users/zsh-completions-master/src"
+
+autoload -U compinit && compinit
+
+# base16
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+base16_chalk
+alias reset="reset && base16_chalk"
+alias clear="clear && base16_chalk"
+
+# aliases
+alias cd="pushd -q"
+alias ag="ag --path-to-agignore ~/.ignore"
+alias dc="docker-compose"
+alias hgclean="rm -f *.{rej,orig}"
+alias indent="python -m json.tool"
+alias isitmfbt="wget -qO - isitmfbt.com | grep 'theTime' | sed -e 's/<[^>]*>//g'"
+alias jsonsort="jq -S -f ~/bin/sort.jq"
+alias logclean="rm -f *.log"
+alias ls="exa"
+alias pg="ps -ef | grep"
+alias pyclean="rm -f *.py[co]"
+alias pysite="python -c 'import site; print(site.getsitepackages()[0])'"
+alias rg="rg --ignore-file $HOME/.ignore --hidden"
+alias usage="du -h --max-depth=1 2> /dev/null | sort -h -r | head -n20"
+alias vim="nvim"
+alias vimclean="rm -f .*.swp"
+alias which="pyenv which"
+
+# functions
+function killall {
+  ps -ef | grep $1 | awk '{print $2}' | xargs kill -9
+}
+
+function pymod {
+  echo "$(python -c "import os.path as _, ${1}; print(_.realpath(${1}.__file__))")"
+}
+
+function pydir {
+  echo "$(python -c "import os.path as _, ${1}; print(_.dirname(_.realpath(${1}.__file__)))")"
+}
+
+function cdp {
+  cd "`pydir ${1}`"
+}
+
+function dumplog {
+  wget -q -O- ${2} | gunzip | structlog format ${1}
+}
+
+function clean {
+  setopt NULL_GLOB
+  pyclean
+  hgclean
+  vimclean
+  logclean
+  unsetopt NULL_GLOB
+}
+
+if $IS_WSL; then
+    notify-send() {
+        wsl-notify-send.exe --category $WSL_DISTRO_NAME "${@}";
+    }
+
+    fix_wsl2_interop() {
+        for i in $(pstree -np -s | grep "tmux: client" | grep -o -E '[0-9]+'); do
+            if [[ -e "/run/WSL/${i}_interop" ]]; then
+                export WSL_INTEROP=/run/WSL/${i}_interop
+            fi
+        done
+    }
+    fix_wsl2_interop
+fi
+
+# environment variables
+export EDITOR=vim
+
+# set DISPLAY properly
+if $IS_WSL; then
+    export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
+else
+    export DISPLAY=localhost:0.0
+fi
+
+# pyenv
+export PYTHON_CONFIGURE_OPTS="--enable-shared"
+
+if [[ -z "$VIRTUAL_ENV" ]]; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# start watchman
+watchman version > /dev/null 2>&1
+
+# neovim
+if [ $NVIM_LISTEN_ADDRESS ]; then
+    export EDITOR="nvr -cc split --remote-wait"
+    alias vim="nvr"
+    alias nvim="nvr"
+fi
+
+for i in ~/.config/zshrc.d/[0-9]*; do
+    source "$i"
+done
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/ahal/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/home/ahal/opt/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/ahal/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/ahal/opt/google-cloud-sdk/completion.zsh.inc'; fi
+eval "$(pyenv init -)"

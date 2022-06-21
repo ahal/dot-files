@@ -1,0 +1,51 @@
+[[mozilla.step]]
+type = "hg"
+repo = "https://hg.mozilla.org/mozilla-unified"
+dest = "~/dev"
+
+[[mozilla.step]]
+type = "link"
+source = "~/dev/mozilla-unified/mach"
+dest = "~/bin/mach"
+
+[[mozilla.step]]
+type = "command"
+run = "mach bootstrap --application-choice=browser"
+cwd = "~/dev/mozilla-unified"
+
+[[mozilla.step]]
+type = "command"
+run = "rustup update"
+
+[[mozilla.step]]
+type = "cargo"
+packages = "sccache"
+
+[[mozilla.step]]
+type = "pipx"
+packages = "MozPhab"
+
+[[mozilla.step]]
+type = "link"
+source = "dot-files/moz-phab-config"
+dest = "~/.moz-phab-config"
+
+[[mozilla.step]]
+type = "link"
+source = "dot-files/mozconfigs"
+dest = "~"
+name = ".mozconfigs"
+
+[[mozilla.step]]
+type = "link"
+source = "m-c/pyrightconfig.json"
+dest = "~/dev/mozilla-unified"
+
+[[mozilla.step]]
+type = "link"
+source = "m-c/hgrc"
+dest = "~/dev/mozilla-unified/.hg"
+
+[[mozilla.step]]
+type = "command"
+run = "mach mach-command-completions zsh -f ~/.zfunc"

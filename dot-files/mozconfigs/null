@@ -1,0 +1,2 @@
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdirs/null
+mk_add_options AUTOCLOBBER=1

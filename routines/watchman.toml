@@ -1,0 +1,39 @@
+[watchman.meta]
+workdir = "~/tmp/watchman"
+version = "v2021.10.18.00"
+
+[[watchman.step]]
+type = "command"
+run = "wget https://github.com/facebook/watchman/releases/download/{version}/watchman-{version}-linux.zip"
+check = "ls watchman-{version}-linux.zip"
+cwd = "{workdir}"
+
+[[watchman.step]]
+type = "command"
+run = "unzip watchman-{version}-linux.zip"
+cwd = "{workdir}"
+
+[[watchman.step]]
+type = "command"
+run = "sudo mkdir -p /usr/local/{bin,lib} /usr/local/var/run/watchman"
+
+[[watchman.step]]
+type = "command"
+run = [
+  "sudo cp watchman-{version}-linux/bin/* /usr/local/bin",
+  "sudo cp watchman-{version}-linux/lib/* /usr/local/lib",
+]
+cwd = "{workdir}"
+shell = true
+
+[[watchman.step]]
+type = "command"
+run = [
+  "sudo chmod 755 /usr/local/bin/watchman",
+  "sudo chmod 2777 /usr/local/var/run/watchman",
+]
+
+[[watchman.step]]
+type = "command"
+run = "echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p"
+check = 'grep "max_user_watches" /etc/sysctl.conf'

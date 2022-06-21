@@ -1,0 +1,164 @@
+#!/bin/bash
+#
+# This script runs a given command over a range of Hg revisions. Note that it
+# will check past revisions out! Exercise caution if there are important
+# untracked files in your working tree.
+#
+# This was adapted from Gary Bernhardt's script to work with Mercurial as well
+# as git:
+# https://github.com/garybernhardt/dotfiles/blob/master/bin/run-command-on-git-revisions
+#
+# Example usage:
+#     $ run-on-commits master 'tox'
+#     $ run-on-commits central .~2 './mach lint --outgoing'
+
+hg root > /dev/null 2>&1
+if [ $? == "0" ]; then
+    vcs=hg
+else
+    git rev-parse --show-toplevel > /dev/null 2>&1
+    if [ $? == "0" ]; then
+        vcs=git
+    fi
+fi
+
+if [ -z $vcs ]; then
+    echo "abort: no hg or git repository detected"
+    exit 1
+fi
+
+if [[ $1 == -v ]]; then
+    verbose=1
+    shift
+fi
+
+start_ref=$1
+shift
+
+if [[ $# -eq 2 ]]; then
+    end_ref=$1
+    test_command=$2
+else
+    end_ref="."
+    test_command=$1
+fi
+
+log_command() {
+    debug "=> $*"
+    eval "$@"
+}
+
+debug() {
+    if [ $verbose ]; then
+        echo $* >&2
+    fi
+}
+
+abort_if_dirty_repo_hg() {
+    set +e
+    stat=$(hg status -n -adm)
+    if [ -n "$stat" ]; then
+        echo "abort: uncommited changes"
+        exit 1
+    fi
+}
+
+abort_if_dirty_repo_git() {
+    set +e
+    git diff-index --quiet --cached HEAD
+    if [[ $? -ne 0 ]]; then
+        echo "abort: uncommited changes"
+        exit 1
+    fi
+    git diff-files --quiet
+    if [[ $? -ne 0 ]]; then
+        echo "abort: unstaged changes"
+        exit 1
+    fi
+    untracked=$(git ls-files --exclude-standard --others)
+    if [ -n "$untracked" ]; then
+        echo "abort: untracked files"
+        exit 1
+    fi
+    set -e
+}
+
+usage() {
+    echo "usage: `basename $0` start_ref [end_ref] test_command"
+}
+
+enforce_usage() {
+    if [ -z "$test_command" ]; then
+        usage
+        exit 1
+    fi
+}
+
+get_revs_hg() {
+    log_command hg log -r 'reverse\(${start_ref}::${end_ref}\)-$start_ref' -T \'{node}\\n\'
+}
+
+get_revs_git() {
+    log_command git rev-list --reverse ${start_ref}..${end_ref}
+}
+
+get_oneline_hg() {
+    hg log -r $1 -T "{rev}, {node|short}: {desc|strip|firstline}"
+}
+
+get_oneline_git() {
+    git log --oneline -1 $1
+}
+
+update_hg() {
+    log_command hg update --quiet $1
+}
+
+update_git() {
+    log_command git checkout --quiet $1
+}
+
+revert_hg() {
+    log_command hg revert -a --quiet
+}
+
+revert_git() {
+    log_command git reset --hard --quiet
+}
+
+run_tests() {
+    failures=()
+    revs=$(get_revs_$vcs)
+
+    for rev in $revs; do
+        oneline=$(get_oneline_$vcs $rev)
+        echo "Checking out: $oneline"
+        update_$vcs $rev
+        log_command $test_command
+
+        if [[ $? -ne 0 ]]; then
+            failures+=("$oneline")
+        fi
+        revert_$vcs
+    done
+    update_$vcs $end_ref
+
+    if [ ${#failures[@]} -ne 0 ]; then
+        echo "Failures occured on the following revisions:"
+        for failure in "${failures[@]}"; do
+            echo "  $failure"
+        done
+        exit 1
+    fi
+
+    debug "OK for all revisions!"
+}
+
+main() {
+    set -e
+    abort_if_dirty_repo_$vcs
+    enforce_usage
+    run_tests
+}
+
+main

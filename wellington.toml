@@ -1,0 +1,12 @@
+[meta]
+defaults = ["system", "python", "shell", "vcs", "neovim", "scripts"]
+include = [
+    "routines/system",
+    "routines/python",
+    "routines/shell",
+    "routines/vcs",
+    "routines/neovim",
+    "routines/scripts",
+    "routines/mozilla",
+    "routines/watchman",
+]

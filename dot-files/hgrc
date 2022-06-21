@@ -1,0 +1,120 @@
+[ui]
+username = Andrew Halberstadt <ahal@pm.me>
+merge = meld
+ignore = /home/ahal/.hgignore
+tweakdefaults = true
+
+[diff]
+showfunc = 1
+unified = 8
+
+[defaults]
+commit = -v
+outgoing = -r .
+push = -r .
+
+[alias]
+first-party-files = !$HG files $1 `cat tools/rewriting/ThirdPartyPaths.txt | tr '\n' ' ' | sed 's/[^ ]* */--exclude=&/g'`
+view = log --patch --stat -vr
+id = view .
+wget = !wget $1 -qO - | hg import -
+wip = log --graph --rev=wip --template=wip
+smart-annotate = annotate -w --skip ignored_changesets
+clean-bookmarks = !$HG log -r "public() and bookmark()" -T "{bookmarks}\n" | xargs $HG bookmark --delete
+
+[revsetalias]
+base(n) = limit(reverse(feature(.)),1,n)
+wip = (_underway() - (head() and public())) or present(central) or tip or .
+ignored_changesets = desc("ignore-this-changeset") or extdata(get_ignored_changesets)
+f = feature
+
+[templates]
+wip = '{label("log.branch", branches)} {label("changeset.{phase}", rev)} {label("grep.user", author|user)}{label("log.tag", if(tags," {tags}"))}{label("log.tag", if(fxheads," {fxheads}"))}{if(children, "", label("log.topic", if(topics, " {topics}")))}{label("log.bookmark", if(bookmarks," {bookmarks}"))}\n{label(ifcontains(rev, revset("."), "desc.here"),desc|firstline)}'
+
+[extensions]
+# built-in
+absorb =
+blackbox =
+churn =
+#fsmonitor =
+histedit =
+progress =
+purge =
+rebase =
+record =
+relink =
+share =
+shelve =
+show =
+hgext.patchbomb =
+
+# external
+evolve =
+bookbinder = ~/dev/bookbinder
+
+[pager]
+pager = LESS=FRSXQ less
+quiet = true
+
+[rebase]
+experimental.inmemory = yes
+
+[email]
+method = smtp
+from = Andrew Halberstadt <ahal@pm.me>
+
+[smtp]
+host = smtp.gmail.com
+port = 587
+tls = starttls
+username = ahal@pm.me
+
+[bookbinder]
+escape = %s.
+
+[mozilla]
+ircnick = ahal
+
+[color]
+mode = terminfo
+# see https://upload.wikimedia.org/wikipedia/en/1/15/Xterm_256color_chart.svg
+color.c_orange = 178
+color.c_yellow = 226
+color.c_darkorange = 168
+color.c_lightgreen = 191
+color.c_sand = 138
+color.c_green = 76
+color.c_grey = 242
+
+log.branch = cyan
+log.summary = c_sand
+log.description = c_lightgreen
+log.bookmark = bold c_darkorange
+log.topic = bold c_darkorange
+log.tag = c_orange
+log.fxtree = c_orange
+log.graph = blue
+
+changeset.public = c_green
+changeset.secret = blue
+changeset.draft = c_yellow
+
+desc.here = bold c_grey blue_background
+wip.bookmarks = yellow underline
+wip.branch = yellow
+wip.draft = green
+wip.here = red
+wip.obsolete = none
+wip.public = blue
+wip.tags = yellow
+wip.user = magenta
+
+[bugzilla]
+username = ahal@mozilla.com
+
+[experimental]
+evolution = all
+graphshorten = true
+worddiff = false
+[extdata]
+get_ignored_changesets = shell:cat `hg root`/.hg-annotate-ignore-revs 2> /dev/null || true

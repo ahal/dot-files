@@ -1,0 +1,9 @@
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdirs/debug_artifact
+mk_add_options AUTOCLOBBER=1
+
+ac_add_options --enable-application=browser
+ac_add_options --enable-artifact-builds
+ac_add_options --enable-debug
+ac_add_options --enable-tests
+
+ENABLE_MARIONETTE=1

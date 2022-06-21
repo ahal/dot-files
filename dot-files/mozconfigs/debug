@@ -1,0 +1,7 @@
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdirs/debug
+mk_add_options AUTOCLOBBER=1
+
+ac_add_options --enable-application=browser
+ac_add_options --enable-debug
+ac_add_options --enable-tests
+ac_add_options --with-ccache=~/.mozbuild/sccache/sccache

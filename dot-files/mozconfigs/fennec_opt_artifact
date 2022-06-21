@@ -1,0 +1,10 @@
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdirs/fennec_opt_artifact
+mk_add_options AUTOCLOBBER=1
+
+# Build Firefox for Android Artifact Mode:
+ac_add_options --enable-application=mobile/android
+ac_add_options --target=arm-linux-androideabi
+ac_add_options --enable-artifact-builds
+
+# With the following Android SDK:
+ac_add_options --with-android-sdk="/home/ahal/.mozbuild/android-sdk-linux"

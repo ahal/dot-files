@@ -1,0 +1,9 @@
+[[system.step]]
+type = "link"
+source = "dot-files/tmux.conf"
+dest = "~/.tmux.conf"
+
+[[system.step]]
+type = "git"
+repo = "https://github.com/tmux-plugins/tpm"
+dest = "~/.tmux/plugins"

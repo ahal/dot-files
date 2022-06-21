@@ -1,0 +1,37 @@
+[[shell.step]]
+type = "dnf"
+packages = ["zsh", "chrome-gnome-shell", "tmux"]
+
+[[shell.step]]
+type = "apt"
+packages = ["zsh", "tmux", "unzip"]
+
+[[shell.step]]
+type = "git"
+repo = "https://github.com/jandamm/zgenom"
+dest = "~"
+name = ".zgenom"
+
+[[shell.step]]
+type = "git"
+repo = "https://github.com/chriskempson/base16-shell"
+dest = "~/.config"
+
+[[shell.step]]
+type = "cargo"
+packages = ["tealdeer", "exa", "ripgrep"]
+
+[[shell.step]]
+type = "link"
+source = "dot-files/zshrc"
+dest = "~/.zshrc"
+
+[[shell.step]]
+type = "link"
+source = "dot-files/zprofile"
+dest = "~/.zprofile"
+
+[[shell.step]]
+type = "link"
+source = "dot-files/zshrc.d"
+dest = "~/.config"

@@ -1,0 +1,8 @@
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdirs/opt_artifact
+mk_add_options AUTOCLOBBER=1
+
+ac_add_options --enable-application=browser
+ac_add_options --enable-artifact-builds
+ac_add_options --enable-js-shell
+
+ENABLE_MARIONETTE=1

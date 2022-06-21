@@ -1,0 +1,9 @@
+[paths]
+default = https://hg.mozilla.org/mozilla-unified
+
+[ui]
+username = Andrew Halberstadt <ahal@mozilla.com>
+
+[extensions]
+firefoxtree = ~/.mozbuild/version-control-tools/hgext/firefoxtree
+push-to-try = ~/.mozbuild/version-control-tools/hgext/push-to-try

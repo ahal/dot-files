@@ -1,0 +1,19 @@
+syntax: glob
+
+*.rej
+*.orig
+*egg-info*
+*.egg*
+*.tar.gz
+*.pyc
+*.pyo
+artifacts/*
+.python-version
+.env
+.vim
+pyrightconfig.json
+
+syntax: regexp
+
+testing\/mozbase\/moz.*\/build.*
+testing\/mozbase\/moz.*\/dist.*

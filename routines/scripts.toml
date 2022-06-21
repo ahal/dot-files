@@ -1,0 +1,9 @@
+[[scripts.step]]
+type = "link"
+source = "ipython/clip_magic.py"
+dest = "~/.ipython/profile_default/startup"
+
+[[scripts.step]]
+type = "link"
+source = "scripts/run-on-commits"
+dest = "~/bin"

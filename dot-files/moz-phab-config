@@ -1,0 +1,35 @@
+[ui]
+no_ansi = False
+
+[vcs]
+safe_mode = False
+
+[git]
+remote = 
+command_path = 
+
+[hg]
+command_path = 
+
+[submit]
+auto_submit = True
+always_blocking = True
+warn_untracked = True
+
+[patch]
+apply_to = base
+create_bookmark = False
+always_full_stack = False
+
+[updater]
+self_last_check = 1655749224
+self_auto_update = True
+get_pre_releases = False
+arc_last_check = 0
+
+[error_reporting]
+report_to_sentry = True
+
+[telemetry]
+enabled = True
+

@@ -1,0 +1,14 @@
+*.rej
+*.orig
+*egg-info*
+*.egg*
+*.tar.gz
+*.pyc
+*.pyo
+.hg
+.git
+.null-ls-root
+.python-version
+.vim
+pyrightconfig.json
+objdirs

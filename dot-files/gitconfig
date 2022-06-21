@@ -1,0 +1,18 @@
+[user]
+	email = ahal@pm.me
+	name = Andrew Halberstadt
+	signingkey = 53F4ADF2D4C85F68
+[color]
+	ui = auto
+[diff]
+	context = 8
+[cinnabar]
+	helper = /home/ahal/.mozbuild/git-cinnabar/git-cinnabar-helper
+	version-check = 1645800343
+	fsck = 1568905047
+[mozreview]
+	nickname = ahal
+[core]
+	excludesfile = /home/ahal/.ignore
+[commit]
+	gpgsign = true
