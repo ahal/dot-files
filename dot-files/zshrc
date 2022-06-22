@@ -1,5 +1,5 @@
 # vars
-CONFIGDIR="${HOME}/dev/configs"
+CONFIGDIR="${HOME}/dev/dot-files"
 IS_WSL=false
 if uname -r | grep -q 'microsoft'; then
   IS_WSL=true
