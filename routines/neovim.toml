@@ -28,10 +28,8 @@ run = "nvim -c PlugInstall -c UpdateRemotePlugins -c qa!"
 
 [[neovim.step]]
 type = "pip"
-pip = "~/.pyenv/versions/neovim/bin/pip"
-packages = [
-    "neovim",
-]
+pip_path = "~/.pyenv/versions/neovim/bin/pip"
+package = "neovim"
 
 [[neovim.step]]
 type = "npm"

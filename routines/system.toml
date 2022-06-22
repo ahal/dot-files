@@ -6,4 +6,5 @@ dest = "~/.tmux.conf"
 [[system.step]]
 type = "git"
 repo = "https://github.com/tmux-plugins/tpm"
+branch = "master"
 dest = "~/.tmux/plugins"

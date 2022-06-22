@@ -40,15 +40,15 @@ check = "ls /home/ahal/.pyenv"
 [[python.step]]
 type = "git"
 repo = "https://github.com/pyenv/pyenv-virtualenvwrapper.git"
+branch = "master"
 dest = "~/.pyenv/plugins"
 name = "pyenv-virtualenvwrapper"
 
 [[python.step]]
 type = "command"
 run = [
-  "~/.pyenv/bin/pyenv install -s 2.7.15",
-  "~/.pyenv/bin/pyenv install -s 3.8.5",
-  "~/.pyenv/bin/pyenv global 3.8.5",
+  "~/.pyenv/bin/pyenv install -s 3.10.5",
+  "~/.pyenv/bin/pyenv global 3.10.5",
   "~/.pyenv/shims/pip install --upgrade pip",
 ]
 
@@ -58,7 +58,8 @@ packages = ["pipx"]
 
 [[python.step]]
 type = "pipx"
-packages = [
-  "mozconfigwrapper",
-  "poetry",
-]
+package = "mozconfigwrapper"
+
+[[python.step]]
+type = "pipx"
+package = "poetry"

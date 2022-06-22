@@ -1,11 +1,11 @@
 [[vcs.step]]
 type = "pipx"
-packages = ["mercurial"]
+package = "mercurial"
 
 [[vcs.step]]
 type = "pipx"
-packages = ["hg-evolve"]
-inject = ["mercurial"]
+package = "hg-evolve"
+inject = "mercurial"
 
 [[vcs.step]]
 type = "hg"
