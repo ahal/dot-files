@@ -22,6 +22,7 @@ Plug 'folke/trouble.nvim'
 " Util
 Plug 'nvim-lua/plenary.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'antoinemadec/FixCursorHold.nvim'
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -36,10 +37,11 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'L3MON4D3/LuaSnip'
+Plug 'windwp/nvim-autopairs'
 
 " Test
-Plug 'vim-test/vim-test'
-Plug 'rcarriga/vim-ultest', {'do': ':UpdateRemotePlugins'}
+Plug 'nvim-neotest/neotest'
+Plug 'nvim-neotest/neotest-python'
 
 " Debug
 Plug 'mfussenegger/nvim-dap'

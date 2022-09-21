@@ -110,7 +110,7 @@ alias clear="clear && base16_chalk"
 # aliases
 alias cd="pushd -q"
 alias ag="ag --path-to-agignore ~/.ignore"
-alias dc="docker-compose"
+alias dc="docker compose"
 alias hgclean="rm -f *.{rej,orig}"
 alias indent="python -m json.tool"
 alias isitmfbt="wget -qO - isitmfbt.com | grep 'theTime' | sed -e 's/<[^>]*>//g'"
@@ -216,3 +216,5 @@ if [ -f '/home/ahal/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/home/ahal/opt
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/ahal/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/ahal/opt/google-cloud-sdk/completion.zsh.inc'; fi
 eval "$(pyenv init -)"
+
+[[ -s "/home/ahal/.gvm/scripts/gvm" ]] && source "/home/ahal/.gvm/scripts/gvm"

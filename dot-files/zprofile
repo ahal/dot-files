@@ -11,6 +11,7 @@ path=(
     ~/.npm-global/bin
     ~/.tmux/plugins/tmux-xpanes/bin
     ~/go/bin
+    ~/opt/lua-language-server/bin
     /usr/lib/android-sdk/cmdline-tools/latest/bin
     $path
 )

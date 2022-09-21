@@ -5,7 +5,9 @@ require("null-ls").setup({
             filetypes = { "markdown", "python", "rst" },
         }),
         require"null-ls".builtins.diagnostics.eslint_d,
-        require"null-ls".builtins.diagnostics.flake8,
+        require"null-ls".builtins.diagnostics.flake8.with({
+            extra_args = { "--max-line-length=100" },
+        }),
         require"null-ls".builtins.diagnostics.markdownlint,
         require"null-ls".builtins.diagnostics.shellcheck,
         require"null-ls".builtins.diagnostics.yamllint.with {

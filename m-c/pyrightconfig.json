@@ -58,7 +58,7 @@
     "third_party/python/Click",
     "third_party/python/PyECC",
     "third_party/python/atomicwrites",
-    "third_party/python/attrs/src",
+    "third_party/python/attrs",
     "third_party/python/backports",
     "third_party/python/biplist",
     "third_party/python/blessings",

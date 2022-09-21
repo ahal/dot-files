@@ -36,6 +36,7 @@ wip = '{label("log.branch", branches)} {label("changeset.{phase}", rev)} {label(
 absorb =
 blackbox =
 churn =
+extdiff =
 #fsmonitor =
 histedit =
 progress =
@@ -74,6 +75,9 @@ escape = %s.
 
 [mozilla]
 ircnick = ahal
+
+[extdiff]
+cmd.difft = difft
 
 [color]
 mode = terminfo
