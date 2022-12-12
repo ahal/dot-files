@@ -25,6 +25,10 @@ watch-task () {
     echo $task_status
 }
 
+rerun-task-group () {
+    taskcluster group list -f $1 | grep $2 | cut -d" " -f1 | xargs -n1 taskcluster task rerun
+}
+
 export ANDROID_SDK_ROOT='/usr/lib/android-sdk'
 export GECKO=$HOME/dev/mozilla-unified
 export MACHRC=$HOME/.machrc

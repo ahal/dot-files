@@ -1,5 +1,10 @@
 lua << EOF
+local on_attach = function(_, bufnr)
+    vim.bo[bufnr].formatexpr = nil
+end
+
 require("null-ls").setup({
+    on_attach = on_attach,
     sources = {
         require"null-ls".builtins.diagnostics.codespell.with({
             filetypes = { "markdown", "python", "rst" },

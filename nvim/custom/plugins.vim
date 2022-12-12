@@ -5,6 +5,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/camelcasemotion'
 Plug 'easymotion/vim-easymotion'
+Plug 'mg979/vim-visual-multi'
 
 "Theme
 Plug 'vim-airline/vim-airline'

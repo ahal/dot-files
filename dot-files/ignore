@@ -7,8 +7,10 @@
 *.pyo
 .hg
 .git
+.gitattributes
 .null-ls-root
 .python-version
 .vim
 pyrightconfig.json
 objdirs
+node_modules

@@ -4,6 +4,7 @@ IS_WSL=false
 if uname -r | grep -q 'microsoft'; then
   IS_WSL=true
   export WHOME=/mnt/c/Users/ahal
+  export DOWNLOADS=$WHOME/Downloads
 fi
 
 # zsh

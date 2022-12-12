@@ -20,7 +20,7 @@ id = view .
 wget = !wget $1 -qO - | hg import -
 wip = log --graph --rev=wip --template=wip
 smart-annotate = annotate -w --skip ignored_changesets
-clean-bookmarks = !$HG log -r "public() and bookmark()" -T "{bookmarks}\n" | xargs $HG bookmark --delete
+clean-bookmarks = !$HG log -r "public() and bookmark()" -T "{bookmarks} " | xargs $HG bookmark --delete
 
 [revsetalias]
 base(n) = limit(reverse(feature(.)),1,n)

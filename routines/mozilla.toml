@@ -1,4 +1,8 @@
 [[mozilla.step]]
+type = "pipx"
+packages = "MozPhab"
+
+[[mozilla.step]]
 type = "hg"
 repo = "https://hg.mozilla.org/mozilla-unified"
 dest = "~/dev"
@@ -20,10 +24,6 @@ run = "rustup update"
 [[mozilla.step]]
 type = "cargo"
 packages = "sccache"
-
-[[mozilla.step]]
-type = "pipx"
-packages = "MozPhab"
 
 [[mozilla.step]]
 type = "link"
@@ -49,3 +49,23 @@ dest = "~/dev/mozilla-unified/.hg"
 [[mozilla.step]]
 type = "command"
 run = "mach mach-command-completions zsh -f ~/.zfunc"
+
+[[mozilla.step]]
+type = "hg"
+repo = "https://hg.mozilla.org/ci/ci-configuration"
+dest = "~/dev"
+
+[[mozilla.step]]
+type = "git"
+repo = "https://github.com/ahal/taskgraph"
+dest = "~/dev"
+
+[[mozilla.step]]
+type = "git"
+repo = "https://github.com/ahal/scriptworker"
+dest = "~/dev"
+
+[[mozilla.step]]
+type = "git"
+repo = "https://github.com/ahal/scriptworker-scripts"
+dest = "~/dev"
