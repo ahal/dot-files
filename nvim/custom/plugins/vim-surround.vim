@@ -1,1 +1,0 @@
-map <C-s> ysiw
