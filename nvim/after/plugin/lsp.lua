@@ -53,6 +53,16 @@ lsp.on_attach(function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end)
 
+lsp.configure('sumneko_lua', {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = {'vim'},
+      }
+    }
+  }
+})
+
 lsp.setup()
 
 -- Turn on lsp status information

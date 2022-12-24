@@ -34,9 +34,6 @@ require('packer').startup(function(use)
 
       -- Useful status updates for LSP
       {'j-hui/fidget.nvim'},
-
-      -- Extra lua config
-      {'folke/neodev.nvim'},
     }
   }
 
