@@ -116,6 +116,9 @@ require('packer').startup(function(use)
       require('aerial').setup()
     end
   }
+
+  use('mbbill/undotree')
+
   if is_bootstrap then
     require('packer').sync()
   end
