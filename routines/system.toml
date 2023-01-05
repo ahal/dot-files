@@ -8,3 +8,18 @@ type = "git"
 repo = "https://github.com/tmux-plugins/tpm"
 branch = "master"
 dest = "~/.tmux/plugins"
+
+[[system.step]]
+type = "link"
+source = "scripts/tmux-cht.sh"
+dest = "~/bin"
+
+[[system.step]]
+type = "link"
+source = "dot-files/tmux/tmux-cht-languages"
+dest = "~/.tmux"
+
+[[system.step]]
+type = "link"
+source = "dot-files/tmux/tmux-cht-commands"
+dest = "~/.tmux"
