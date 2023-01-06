@@ -16,6 +16,11 @@ dest = "~/bin"
 
 [[system.step]]
 type = "link"
+source = "scripts/tmux-sessionizer"
+dest = "~/bin"
+
+[[system.step]]
+type = "link"
 source = "dot-files/tmux/tmux-cht-languages"
 dest = "~/.tmux"
 
