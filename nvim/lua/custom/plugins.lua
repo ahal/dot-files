@@ -118,6 +118,7 @@ require('packer').startup(function(use)
   }
 
   use('mbbill/undotree')
+  use('github/copilot.vim')
 
   if is_bootstrap then
     require('packer').sync()

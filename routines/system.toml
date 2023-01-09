@@ -28,3 +28,8 @@ dest = "~/.tmux"
 type = "link"
 source = "dot-files/tmux/tmux-cht-commands"
 dest = "~/.tmux"
+
+[[system.step]]
+type = "link"
+source = "scripts/wsl-ssh-agent-relay"
+dest = "~/bin"
