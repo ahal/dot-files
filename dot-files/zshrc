@@ -96,10 +96,8 @@ fpath+="${HOME}/.zfunc"
 fpath+="${HOME}/.zgen/zsh-users/zsh-completions-master/src"
 
 autoload -U compinit && compinit
-
 # base16
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && source "$BASE16_SHELL/profile_helper.sh"
 base16_chalk
 alias reset="reset && base16_chalk"
 alias clear="clear && base16_chalk"
@@ -206,12 +204,6 @@ for i in ~/.config/zshrc.d/[0-9]*; do
 done
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/ahal/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/home/ahal/opt/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/ahal/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/ahal/opt/google-cloud-sdk/completion.zsh.inc'; fi
 eval "$(pyenv init -)"
 
 [[ -s "/home/ahal/.gvm/scripts/gvm" ]] && source "/home/ahal/.gvm/scripts/gvm"

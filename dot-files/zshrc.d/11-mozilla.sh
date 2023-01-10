@@ -38,10 +38,10 @@ export MACHRC=$HOME/.machrc
 export BUILD_SYSTEM_TELEMETRY=1
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/ahal/google-cloud-sdk/path.zsh.inc' ]; then . '/home/ahal/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/home/ahal/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/home/ahal/opt/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/ahal/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/ahal/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/home/ahal/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/ahal/opt/google-cloud-sdk/completion.zsh.inc'; fi
 
 GPG_TTY=$(tty)
 export GPG_TTY
