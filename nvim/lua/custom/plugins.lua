@@ -117,8 +117,10 @@ require('packer').startup(function(use)
     end
   }
 
+  use('chaoren/vim-wordmotion')
+
   use('mbbill/undotree')
-  use('github/copilot.vim')
+  -- use('github/copilot.vim')
 
   if is_bootstrap then
     require('packer').sync()
