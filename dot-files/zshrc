@@ -17,6 +17,10 @@ if ! zgen saved; then
     zgen load zsh-users/zsh-syntax-highlighting
     zgen load zsh-users/zsh-history-substring-search
 
+    if $IS_WSL; then
+        zgen load bobsoppe/zsh-ssh-agent
+    fi
+
     # completions
     zgen load zsh-users/zsh-completions src
     zgen load "${CONFIGDIR}/zsh/completion.zsh"
@@ -97,6 +101,7 @@ fpath+="${HOME}/.zgen/zsh-users/zsh-completions-master/src"
 
 autoload -U compinit && compinit
 # base16
+BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && source "$BASE16_SHELL/profile_helper.sh"
 base16_chalk
 alias reset="reset && base16_chalk"
