@@ -79,6 +79,7 @@ require('packer').startup(function(use)
       }
     end
   }
+
   use {
     'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
     config = function()
@@ -121,6 +122,13 @@ require('packer').startup(function(use)
 
   use('mbbill/undotree')
   -- use('github/copilot.vim')
+
+  use {
+    'windwp/nvim-autopairs',
+    config = function()
+      require("nvim-autopairs").setup()
+    end
+  }
 
   if is_bootstrap then
     require('packer').sync()

@@ -1,0 +1,9 @@
+[[fzf.step]]
+type = "git"
+repo = "https://github.com/junegunn/fzf"
+branch = "master"
+dest = "~/.config"
+
+[[fzf.step]]
+type = "command"
+run = "~/.config/fzf/install"

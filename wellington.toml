@@ -1,7 +1,8 @@
 [meta]
-defaults = ["system", "python", "shell", "vcs", "neovim", "scripts"]
+defaults = ["system", "fzf", "python", "shell", "vcs", "neovim", "scripts"]
 include = [
     "routines/system",
+    "routines/fzf",
     "routines/python",
     "routines/shell",
     "routines/vcs",
