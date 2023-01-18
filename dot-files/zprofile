@@ -3,8 +3,8 @@ path=(
     ~/bin
     ~/.local/bin
     ~/.cargo/bin
+    ~/.config/fzf/bin
     ~/.poetry/bin
-    ~/.fzf/bin
     ~/.mozbuild/git-cinnabar
     ~/.mozbuild/moz-phab/arcanist/bin
     ~/.mozbuild/version-control-tools/git/commands
