@@ -20,6 +20,10 @@ require('packer').startup(function(use)
       {'williamboman/mason.nvim'},
       {'williamboman/mason-lspconfig.nvim'},
 
+      -- null-ls
+      {'jose-elias-alvarez/null-ls.nvim'},
+      {'jay-babu/mason-null-ls.nvim'},
+
       -- Autocompletion
       {'hrsh7th/nvim-cmp'},
       {'hrsh7th/cmp-buffer'},
@@ -129,6 +133,8 @@ require('packer').startup(function(use)
       require("nvim-autopairs").setup()
     end
   }
+
+  use 'Vimjas/vim-python-pep8-indent'
 
   if is_bootstrap then
     require('packer').sync()

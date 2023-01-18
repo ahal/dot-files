@@ -67,3 +67,12 @@ lsp.setup()
 
 -- Turn on lsp status information
 require('fidget').setup()
+
+-- Enable null-ls
+require('mason-null-ls').setup({
+  ensure_installed = {'isort', 'black', 'flake8'},
+  automatic_install = false,
+  automatic_setup = true,
+})
+require('null-ls').setup()
+require('mason-null-ls').setup_handlers()
