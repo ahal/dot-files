@@ -243,6 +243,11 @@ _G.packer_plugins = {
     path = "/home/ahal/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
+  ["vim-python-pep8-indent"] = {
+    loaded = true,
+    path = "/home/ahal/.local/share/nvim/site/pack/packer/start/vim-python-pep8-indent",
+    url = "https://github.com/Vimjas/vim-python-pep8-indent"
+  },
   ["vim-rhubarb"] = {
     loaded = true,
     path = "/home/ahal/.local/share/nvim/site/pack/packer/start/vim-rhubarb",

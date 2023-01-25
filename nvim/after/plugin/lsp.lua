@@ -74,5 +74,12 @@ require('mason-null-ls').setup({
   automatic_install = false,
   automatic_setup = true,
 })
-require('null-ls').setup()
+
+local on_attach_null_ls = function(_, bufnr)
+  vim.bo[bufnr].formatexpr = nil
+end
+require('null-ls').setup({
+  on_attach = on_attach_null_ls,
+})
+
 require('mason-null-ls').setup_handlers()
