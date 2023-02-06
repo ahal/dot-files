@@ -10,21 +10,6 @@ tf () {
   fx "tg => String(require(\"child_process\").spawnSync(\"fzf\", [\"-f\", \"$1\"], {\"input\": Object.keys(tg).join(\"\n\")}).output).split(\"\n\").reduce((obj, key) => { obj[key] = tg[key]; return obj; }, {})" | fx
 }
 
-watch-task () {
-    local status_cmd task_status;
-    status_cmd="sh -c \"(taskcluster task status ${1} 2> /dev/null || echo unscheduled) | cut -d' ' -f1\"";
-    task_status=$(eval $status_cmd);
-    completed_re='^(completed|failed|exception)$'
-    while ! [[ $task_status =~ $completed_re ]]
-    do
-        notify-send "Task ${1} is $task_status";
-        watch -gt -n 10 $status_cmd;
-        task_status=$(eval $status_cmd);
-    done
-    notify-send "Task ${1} is $task_status";
-    echo $task_status
-}
-
 rerun-task-group () {
     taskcluster group list -f $1 | grep $2 | cut -d" " -f1 | xargs -n1 taskcluster task rerun
 }

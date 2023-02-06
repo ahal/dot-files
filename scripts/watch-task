@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+if [[ -z "${TASKCLUSTER_ROOT_URL}" ]]; then
+    echo "No Root URL specified; set TASKCLUSTER_ROOT_URL";
+fi
+
+status_cmd="sh -c \"(taskcluster task status ${1} 2> /dev/null || echo unscheduled) | cut -d' ' -f1\"";
+task_status=$(eval $status_cmd);
+completed_re='^(completed|failed|exception)$'
+while ! [[ $task_status =~ $completed_re ]]
+do
+    notify-send "Task ${1} is $task_status";
+    watch -gt -n 10 $status_cmd;
+    task_status=$(eval $status_cmd);
+done
+notify-send "Task ${1} is $task_status";
+echo $task_status

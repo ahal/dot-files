@@ -7,3 +7,8 @@ dest = "~/.ipython/profile_default/startup"
 type = "link"
 source = "scripts/run-on-commits"
 dest = "~/bin"
+
+[[scripts.step]]
+type = "link"
+source = "scripts/watch-task"
+dest = "~/bin"
