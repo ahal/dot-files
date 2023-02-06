@@ -5,9 +5,13 @@ if [[ -z "${TASKCLUSTER_ROOT_URL}" ]]; then
     exit 1;
 fi
 
-function notify-send() {
-    wsl-notify-send.exe --category "$WSL_DISTRO_NAME" "${@}";
-}
+# If using WSL, wsl-notify-send.exe must be on the PATH.
+# See https://github.com/stuartleeks/wsl-notify-send
+if uname -r | grep -q 'microsoft'; then
+    function notify-send() {
+        wsl-notify-send.exe --category "$WSL_DISTRO_NAME" "${@}";
+    }
+fi
 
 status_cmd="sh -c \"(taskcluster task status ${1} 2> /dev/null || echo unscheduled) | cut -d' ' -f1\"";
 completed_re='^(completed|failed|exception)$'
