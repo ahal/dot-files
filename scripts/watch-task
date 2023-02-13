@@ -13,7 +13,7 @@ if uname -r | grep -q 'microsoft'; then
     }
 fi
 
-status_cmd="sh -c \"(taskcluster task status ${1} 2> /dev/null || echo unscheduled) | cut -d' ' -f1\"";
+status_cmd="(taskcluster task status ${1} 2> /dev/null || echo unscheduled) | cut -d' ' -f1";
 completed_re='^(completed|failed|exception)$'
 
 task_status=$(eval "$status_cmd");
