@@ -5,9 +5,9 @@ fi
 
 # vars
 CONFIGDIR="${HOME}/dev/dot-files"
-IS_WSL=false
+export IS_WSL=false
 if uname -r | grep -q 'microsoft'; then
-  IS_WSL=true
+  export IS_WSL=true
   export WHOME=/mnt/c/Users/ahal
   export DOWNLOADS=$WHOME/Downloads
 fi
@@ -177,7 +177,7 @@ if $IS_WSL; then
 fi
 
 # environment variables
-export EDITOR=vim
+export EDITOR=nvim
 
 # set DISPLAY properly
 if $IS_WSL; then
