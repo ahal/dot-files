@@ -1,2 +1,2 @@
-require('custom.plugins')
 require('custom.settings')
+require('custom.lazy')
