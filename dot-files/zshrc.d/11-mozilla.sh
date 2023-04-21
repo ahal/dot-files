@@ -1,6 +1,7 @@
 # mozilla
 alias phab="moz-phab"
 alias review="mach lint -o && moz-phab submit"
+alias w="TASKCLUSTER_ROOT_URL=https://firefox-ci-tc.services.mozilla.com watch-task"
 
 function phabimport {
   wget https://phabricator.services.mozilla.com/${1}\?download\=true -qO - | hg import - --no-commit

@@ -27,6 +27,7 @@ base(n) = limit(reverse(feature(.)),1,n)
 wip = (_underway() - (head() and public())) or present(central) or tip or .
 ignored_changesets = desc("ignore-this-changeset") or extdata(get_ignored_changesets)
 f = feature
+ptip = last(public())
 
 [templates]
 wip = '{label("log.branch", branches)} {label("changeset.{phase}", rev)} {label("grep.user", author|user)}{label("log.tag", if(tags," {tags}"))}{label("log.tag", if(fxheads," {fxheads}"))}{if(children, "", label("log.topic", if(topics, " {topics}")))}{label("log.bookmark", if(bookmarks," {bookmarks}"))}\n{label(ifcontains(rev, revset("."), "desc.here"),desc|firstline)}'
@@ -80,7 +81,7 @@ ircnick = ahal
 cmd.difft = difft
 
 [color]
-mode = terminfo
+mode = terminfo 
 # see https://upload.wikimedia.org/wikipedia/en/1/15/Xterm_256color_chart.svg
 color.c_orange = 178
 color.c_yellow = 226
