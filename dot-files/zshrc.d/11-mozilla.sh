@@ -11,6 +11,44 @@ tf () {
   fx "tg => String(require(\"child_process\").spawnSync(\"fzf\", [\"-f\", \"$1\"], {\"input\": Object.keys(tg).join(\"\n\")}).output).split(\"\n\").reduce((obj, key) => { obj[key] = tg[key]; return obj; }, {})" | fx
 }
 
+tc-signin () {
+    if [[ "$#" == "0" ]]; then
+        echo "error: must provide use case"
+        return 1
+    fi
+    purpose="$1"
+    shift
+
+    case $purpose in
+        relduty)
+            expiry="60m"
+            scopes=(
+                "queue:rerun-task:*"
+                "queue:cancel-task:*"
+            )
+            ;;
+        ciadmin)
+            expiry="15m"
+            scopes=(
+                "hooks:list-hooks:*"
+            )
+            ;;
+        root)
+            expiry="15m"
+            scopes=(
+                "*"
+            )
+            ;;
+        *)
+            echo "error: invalid use case '$purpose'"
+            return 1
+    esac
+
+    scope_str=$(IFS=$'\n' ; echo "${scopes[*]}")
+    tc_url="${TASKCLUSTER_ROOT_URL:-https://firefox-ci-tc.services.mozilla.com}"
+    eval "$(TASKCLUSTER_ROOT_URL=$tc_url taskcluster signin --expires=$expiry --scope="$scope_str")"
+}
+
 rerun-task-group () {
     taskcluster group list -f $1 | grep $2 | cut -d" " -f1 | xargs -n1 taskcluster task rerun
 }
