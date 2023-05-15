@@ -54,3 +54,13 @@ null_ls.setup({
     vim.bo[bufnr].formatexpr = nil
   end
 })
+
+-- Language server overrides
+local lspconfig = require('lspconfig')
+lspconfig.yamlls.setup({
+  settings = {
+    yaml = {
+      keyOrdering = false,
+    }
+  }
+})

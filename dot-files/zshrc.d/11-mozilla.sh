@@ -28,9 +28,15 @@ tc-signin () {
             )
             ;;
         ciadmin)
-            expiry="15m"
+            expiry="60m"
             scopes=(
                 "hooks:list-hooks:*"
+            )
+            ;;
+        fxci)
+            expiry="15m"
+            scopes=(
+                "hooks:trigger-hook:*"
             )
             ;;
         root)
