@@ -55,6 +55,11 @@ tc-signin () {
     eval "$(TASKCLUSTER_ROOT_URL=$tc_url taskcluster signin --expires=$expiry --scope="$scope_str")"
 }
 
+tc-signout () {
+    unset TASKCLUSTER_CLIENT_ID
+    unset TASKCLUSTER_ACCESS_TOKEN
+}
+
 rerun-task-group () {
     taskcluster group list -f $1 | grep $2 | cut -d" " -f1 | xargs -n1 taskcluster task rerun
 }
