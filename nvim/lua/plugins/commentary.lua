@@ -1,6 +1,6 @@
 return {
   'tpope/vim-commentary',
   config = function()
-    require('gitlinker').setup()
+    require('vim-commentary').setup()
   end
 }
