@@ -20,13 +20,6 @@ tc-signin () {
     shift
 
     case $purpose in
-        relduty)
-            expiry="60m"
-            scopes=(
-                "queue:rerun-task:*"
-                "queue:cancel-task:*"
-            )
-            ;;
         ciadmin)
             expiry="60m"
             scopes=(
@@ -37,6 +30,13 @@ tc-signin () {
             expiry="15m"
             scopes=(
                 "hooks:trigger-hook:*"
+            )
+            ;;
+        relduty)
+            expiry="60m"
+            scopes=(
+                "queue:rerun-task:*"
+                "queue:cancel-task:*"
             )
             ;;
         root)
