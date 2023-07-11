@@ -19,8 +19,12 @@ branch = "master"
 dest = "~/.config"
 
 [[shell.step]]
+type = "apt"
+packages = ["libxcb-shape0-dev", "libxcb-xfixes0-dev"]  # jless dependencies
+
+[[shell.step]]
 type = "cargo"
-packages = ["tealdeer", "exa", "ripgrep"]
+packages = ["tealdeer", "exa", "ripgrep", "jless"]
 
 [[shell.step]]
 type = "link"
