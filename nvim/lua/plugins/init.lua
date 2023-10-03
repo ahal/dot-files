@@ -2,7 +2,7 @@ return {
   -- LSP
   {
     'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
+    branch = 'v3.x',
     dependencies = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },
@@ -14,9 +14,9 @@ return {
         dependencies = { 'williamboman/mason-lspconfig.nvim' },
       },
 
-      -- null-ls
+      -- none-ls
       {
-        'jose-elias-alvarez/null-ls.nvim',
+        'nvimtools/none-ls.nvim',
         dependencies = { 'jay-babu/mason-null-ls.nvim' },
       },
 

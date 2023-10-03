@@ -38,19 +38,19 @@ cmp.setup({
 -- Turn on lsp status information
 require('fidget').setup()
 
-local null_ls = require('null-ls')
-local null_opts = lsp.build_options('null-ls', {})
+local none_ls = require('null-ls')
+local none_opts = lsp.build_options('null-ls', {})
 
--- Enable null-ls
+-- Enable none-ls
 require('mason-null-ls').setup({
   ensure_installed = {'ruff', 'black'},
   automatic_install = false,
   handlers = {},
 })
 
-null_ls.setup({
+none_ls.setup({
   on_attach = function(client, bufnr)
-    null_opts.on_attach(client, bufnr)
+    none_opts.on_attach(client, bufnr)
     vim.bo[bufnr].formatexpr = nil
   end
 })
