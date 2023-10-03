@@ -26,17 +26,17 @@ tc-signin () {
                 "hooks:list-hooks:*"
             )
             ;;
-        fxci)
-            expiry="15m"
-            scopes=(
-                "hooks:trigger-hook:*"
-            )
-            ;;
         relduty)
             expiry="60m"
             scopes=(
                 "queue:rerun-task:*"
                 "queue:cancel-task:*"
+            )
+            ;;
+        hook)
+            expiry="15m"
+            scopes=(
+                "hooks:trigger-hook:*"
             )
             ;;
         root)
@@ -67,7 +67,7 @@ rerun-task-group () {
 export ANDROID_SDK_ROOT='/usr/lib/android-sdk'
 export GECKO=$HOME/dev/mozilla-unified
 export MACHRC=$HOME/.machrc
-#export TASKCLUSTER_ROOT_URL=https://firefox-ci-tc.services.mozilla.com
+export TASKCLUSTER_ROOT_URL=https://firefox-ci-tc.services.mozilla.com
 
 # turn on mozilla data collection
 export BUILD_SYSTEM_TELEMETRY=1

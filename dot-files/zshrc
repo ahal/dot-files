@@ -206,7 +206,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # start watchman
-watchman version > /dev/null 2>&1
+# watchman version > /dev/null 2>&1
 
 # neovim
 if [ $NVIM_LISTEN_ADDRESS ]; then

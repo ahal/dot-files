@@ -69,9 +69,8 @@ return {
     'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
     config = function()
       -- See `:help indent_blankline.txt`
-      require('indent_blankline').setup {
-        char = '┊',
-        show_trailing_blankline_indent = false,
+      require('ibl').setup {
+        indent={char = '┊'},
       }
     end
   },
@@ -83,6 +82,8 @@ return {
     end
   },
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'tpope/vim-surround',
+  'tpope/vim-repeat',
 
   {
     "EdenEast/nightfox.nvim",
