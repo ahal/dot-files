@@ -1,15 +1,35 @@
 -- LSP settings.
-local lsp = require('lsp-zero').preset('recommended')
+local lsp = require('lsp-zero')
 
 --  This function gets run when an LSP connects to a particular buffer.
 lsp.on_attach(function(_, bufnr)
   lsp.default_keymaps({buffer = bufnr })
 end)
 
--- Configure lua language server for neovim
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
-lsp.setup()
+-- Configure mason
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    'bashls',
+    'clangd',
+    'dockerls',
+    'esbonio',        -- sphinx
+    'eslint',
+    'lua_ls',
+    'marksman',       -- markdown
+    'pyright',
+    'rust_analyzer',
+    'taplo',          -- toml
+    'yamlls',
+  },
+  handlers = {
+    lsp.default_setup,
+    lua_ls = function()
+      local lua_opts = lsp.nvim_lua_ls()
+      require('lspconfig').lua_ls.setup(lua_opts)
+    end,
+  },
+})
 
 -- Setup autocomplete
 local cmp = require('cmp')

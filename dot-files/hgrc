@@ -1,8 +1,13 @@
 [ui]
 username = Andrew Halberstadt <ahal@pm.me>
-merge = meld
+merge = vimdiff 
 ignore = /home/ahal/.hgignore
 tweakdefaults = true
+
+[merge-tools]
+vimdiff.executable = /home/ahal/bin/nvim.appimage
+vimdiff.args = -f -d $output -M $local $base $other -c "wincmd J" -c "set modifiable" -c "set write"
+vimdiff.premerge = keep
 
 [diff]
 showfunc = 1
