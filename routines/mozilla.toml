@@ -1,6 +1,6 @@
 [[mozilla.step]]
 type = "pipx"
-packages = "MozPhab"
+package = "MozPhab"
 
 [[mozilla.step]]
 type = "hg"
