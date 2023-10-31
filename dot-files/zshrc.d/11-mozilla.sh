@@ -119,3 +119,11 @@ signer-login () {
         sleep 10
     done
 }
+
+git-mozilla-clone () {
+    org="$1"
+    repo="$2"
+    git clone "git@github.com:ahal/$repo.git" "/home/ahal/dev/$repo"
+    git remote add mozilla "git@github.com:$org/$repo.git"
+    git pull mozilla
+}
