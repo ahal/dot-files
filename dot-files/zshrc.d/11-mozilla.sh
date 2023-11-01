@@ -128,5 +128,6 @@ git-mozilla-clone () {
     pushd $dest
     git remote add mozilla "git@github.com:$org/$repo.git"
     git pull mozilla
+    git config user.email ahal@mozilla.com
     popd
 }
