@@ -58,6 +58,7 @@ hgext.patchbomb =
 # external
 evolve =
 bookbinder = ~/dev/bookbinder
+robustcheckout = ~/dev/taskgraph/src/taskgraph/run-task/robustcheckout.py
 
 [pager]
 pager = LESS=FRSXQ less
