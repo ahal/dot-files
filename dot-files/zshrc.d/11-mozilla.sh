@@ -123,7 +123,10 @@ signer-login () {
 git-mozilla-clone () {
     org="$1"
     repo="$2"
-    git clone "git@github.com:ahal/$repo.git" "/home/ahal/dev/$repo"
+    dest="/home/ahal/dev/$repo"
+    git clone "git@github.com:ahal/$repo.git" "$dest"
+    pushd $dest
     git remote add mozilla "git@github.com:$org/$repo.git"
     git pull mozilla
+    popd
 }
