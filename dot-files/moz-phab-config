@@ -19,6 +19,7 @@ warn_untracked = True
 [patch]
 apply_to = base
 create_bookmark = False
+create_topic = False
 always_full_stack = False
 
 [updater]

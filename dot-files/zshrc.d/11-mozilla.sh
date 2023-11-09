@@ -120,7 +120,7 @@ signer-login () {
     done
 }
 
-git-mozilla-clone () {
+git-mozilla-clone () {( set -e
     org="$1"
     repo="$2"
     dest="/home/ahal/dev/$repo"
@@ -128,6 +128,7 @@ git-mozilla-clone () {
     pushd $dest
     git remote add mozilla "git@github.com:$org/$repo.git"
     git pull mozilla
+    git checkout -B main mozilla/main
     git config user.email ahal@mozilla.com
     popd
-}
+)}

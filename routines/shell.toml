@@ -24,7 +24,7 @@ packages = ["libxcb-shape0-dev", "libxcb-xfixes0-dev"]  # jless dependencies
 
 [[shell.step]]
 type = "cargo"
-packages = ["tealdeer", "exa", "ripgrep", "jless"]
+packages = ["tealdeer", "exa", "ripgrep", "jless", "du-dust", "bat"]
 
 [[shell.step]]
 type = "link"

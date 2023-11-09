@@ -88,14 +88,14 @@ cmd.difft = difft
 
 [color]
 mode = terminfo 
-# see https://upload.wikimedia.org/wikipedia/en/1/15/Xterm_256color_chart.svg
+# see https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg
 color.c_orange = 178
 color.c_yellow = 226
 color.c_darkorange = 168
 color.c_lightgreen = 191
 color.c_sand = 138
 color.c_green = 76
-color.c_grey = 242
+color.c_purple = 125
 
 log.branch = cyan
 log.summary = c_sand
@@ -110,7 +110,7 @@ changeset.public = c_green
 changeset.secret = blue
 changeset.draft = c_yellow
 
-desc.here = bold c_grey blue_background
+desc.here = bold white blue_background
 wip.bookmarks = yellow underline
 wip.branch = yellow
 wip.draft = green
@@ -118,7 +118,7 @@ wip.here = red
 wip.obsolete = none
 wip.public = blue
 wip.tags = yellow
-wip.user = magenta
+grep.user = c_purple
 
 [bugzilla]
 username = ahal@mozilla.com

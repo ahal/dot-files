@@ -23,7 +23,7 @@ run = "rustup update"
 
 [[mozilla.step]]
 type = "cargo"
-packages = "sccache"
+packages = ["sccache"]
 
 [[mozilla.step]]
 type = "link"
@@ -48,7 +48,7 @@ dest = "~/dev/mozilla-unified/.hg"
 
 [[mozilla.step]]
 type = "command"
-run = "mach mach-command-completions zsh -f ~/.zfunc"
+run = "mach mach-completion zsh -f ~/.zfunc/_mach"
 
 [[mozilla.step]]
 type = "hg"
