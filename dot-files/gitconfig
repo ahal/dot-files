@@ -15,4 +15,4 @@
 [core]
 	excludesfile = /home/ahal/.ignore
 [commit]
-	gpgsign = true
+	gpgSign = true
