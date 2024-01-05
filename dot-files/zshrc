@@ -67,7 +67,6 @@ function zle-keymap-select {
   fi
 }
 zle -N zle-keymap-select
-
 # Use beam shape cursor on startup.
 echo -ne '\e[5 q'
 
@@ -179,12 +178,12 @@ fi
 
 # environment variables
 export EDITOR="${HOME}/bin/nvim.appimage"
-
+ 
 # set DISPLAY properly
 if $IS_WSL; then
     export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
 else
-    export DISPLAY=localhost:0.0
+    export DISPLAY=":0"
 fi
 
 # pyenv
