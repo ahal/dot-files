@@ -216,4 +216,6 @@ done
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(pyenv init -)"
 
-[[ -s "/home/ahal/.gvm/scripts/gvm" ]] && source "/home/ahal/.gvm/scripts/gvm"
+if [[ -s "/home/ahal/.gvm/scripts/gvm" ]]; then
+    source "/home/ahal/.gvm/scripts/gvm"
+fi
