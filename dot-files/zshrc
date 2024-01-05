@@ -180,12 +180,11 @@ fi
 export EDITOR="${HOME}/bin/nvim.appimage"
 
 # set DISPLAY properly
-#if $IS_WSL; then
-#    export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
-#else
-#    export DISPLAY=localhost:0.0
-#fi
-export DISPLAY=:0
+if $IS_WSL; then
+    export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
+else
+    export DISPLAY=localhost:0.0
+fi
 
 # pyenv
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
