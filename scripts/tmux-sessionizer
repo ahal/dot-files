@@ -5,7 +5,7 @@ if [[ $# -eq 1 ]]; then
     selected=$1
 else
     root_dir=~/dev
-    selected=$(find $root_dir/ -mindepth 1 -maxdepth 1 -type d | xargs -L1 -I{} basename "{}" | sort | fzf)
+    selected=$(find $root_dir/ -mindepth 1 -maxdepth 1 -type d | xargs -I{} basename "{}" | sort | /home/ahal/.fzf/bin/fzf)
 fi
 
 if [[ -z $selected ]]; then
