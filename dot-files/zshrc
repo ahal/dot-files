@@ -116,20 +116,16 @@ alias clear="clear && base16_chalk"
 alias cd="pushd -q"
 alias ag="ag --path-to-agignore ~/.ignore"
 alias dc="docker compose"
-alias hgclean="rm -f *.{rej,orig}"
 alias indent="python -m json.tool"
 alias isitmfbt="wget -qO - isitmfbt.com | grep 'theTime' | sed -e 's/<[^>]*>//g'"
 alias jsonsort="jq -S -f ~/bin/sort.jq"
-alias logclean="rm -f *.log"
 alias ls="exa"
 alias pg="ps -ef | grep"
-alias pyclean="rm -f *.py[co]"
 alias pysite="python -c 'import site; print(site.getsitepackages()[0])'"
 alias rg="rg --ignore-file $HOME/.ignore --hidden"
 alias usage="du -h --max-depth=1 2> /dev/null | sort -h -r | head -n20"
 alias vim="nvim"
 alias nvim="${HOME}/bin/nvim.appimage"
-alias vimclean="rm -f .*.swp"
 alias which="pyenv which"
 
 if $IS_WSL; then
@@ -157,14 +153,13 @@ function dumplog {
   wget -q -O- ${2} | gunzip | structlog format ${1}
 }
 
-function clean {
-  setopt NULL_GLOB
-  pyclean
-  hgclean
-  vimclean
-  logclean
-  unsetopt NULL_GLOB
+function clear-scrollback-buffer {
+  clear && printf '\e[3J'
+  zle && zle .reset-prompt && zle -R
 }
+
+zle -N clear-scrollback-buffer
+bindkey '^L' clear-scrollback-buffer
 
 if $IS_WSL; then
     notify-send() {
