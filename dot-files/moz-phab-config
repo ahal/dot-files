@@ -21,9 +21,10 @@ apply_to = base
 create_bookmark = False
 create_topic = False
 always_full_stack = False
+branch_name_template = phab-D{rev_id}
 
 [updater]
-self_last_check = 1655749224
+self_last_check = 1706887476
 self_auto_update = True
 get_pre_releases = False
 arc_last_check = 0
