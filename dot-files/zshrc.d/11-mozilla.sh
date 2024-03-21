@@ -23,6 +23,7 @@ tc-signin () {
         ciadmin)
             expiry="60m"
             scopes=(
+                "auth:list-clients"
                 "hooks:list-hooks:*"
             )
             ;;

@@ -16,3 +16,16 @@
 	excludesfile = /home/ahal/.ignore
 [commit]
 	gpgSign = true
+[safe]
+	directory = /tmp/tmp1jmtplgc/destination
+	directory = /tmp/tmp533tb6wk/destination
+	directory = /tmp/tmpoz8ecbz7/destination
+	directory = /tmp/tmpnjm0cejz/destination
+	directory = /tmp/tmpdrf_130b/destination
+	directory = /tmp/tmpdec97pr7/destination
+	directory = /tmp/tmpnc8k1ikh/destination
+	directory = /tmp/tmpy37zddmr/destination
+	directory = /tmp/tmp6tuh2mpj/destination
+	directory = /tmp/tmp88thsq8a/destination
+	directory = /tmp/tmpzvw_8hg4/destination
+	directory = /tmp/tmpuz0ex6gn/destination
