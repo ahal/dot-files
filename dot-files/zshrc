@@ -113,7 +113,7 @@ alias reset="reset && base16_chalk"
 alias clear="clear && base16_chalk"
 
 # aliases
-alias cd="pushd -q"
+#alias cd="pushd -q"
 alias ag="ag --path-to-agignore ~/.ignore"
 alias dc="docker compose"
 alias indent="python -m json.tool"
@@ -220,3 +220,5 @@ eval "$(pyenv init -)"
 if [[ -s "/home/ahal/.gvm/scripts/gvm" ]]; then
     source "/home/ahal/.gvm/scripts/gvm"
 fi
+
+[[ -s "/home/ahal/.gvm/scripts/gvm" ]] && source "/home/ahal/.gvm/scripts/gvm"

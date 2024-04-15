@@ -52,6 +52,7 @@ hgext.patchbomb =
 
 # external
 evolve =
+hggit =
 bookbinder = ~/dev/bookbinder
 robustcheckout = ~/dev/taskgraph/src/taskgraph/run-task/robustcheckout.py
 
