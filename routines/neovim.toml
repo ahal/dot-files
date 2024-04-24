@@ -1,10 +1,12 @@
 [[neovim.step]]
-type = "dnf"
-packages = ["neovim"]
-
-[[neovim.step]]
-type = "apt"
-packages = ["neovim"]
+type = "command"
+run = [
+  "curl --clobber -L -o nvim.appimage http://github.com/neovim/neovim/releases/latest/download/nvim.appimage",
+  "chmod +x nvim.appimage",
+  "ln -s nvim.appimage nvim"
+]
+check = "test $(curl -s https://api.github.com/repos/neovim/neovim/releases/latest | jq -r .tag_name) = $(nvim --version | grep NVIM | cut -d' ' -f2)"
+cwd = "~/bin"
 
 [[neovim.step]]
 type = "command"
@@ -12,31 +14,12 @@ run = "pyenv virtualenv neovim"
 check = "pyenv virtualenvs --bare | grep -q neovim"
 
 [[neovim.step]]
+type = "pip"
+pip_path = "~/.pyenv/versions/neovim/bin/pip"
+packages = "neovim"
+
+[[neovim.step]]
 type = "link"
 source = "nvim"
 dest = "~/.config"
 name = "nvim"
-
-[[neovim.step]]
-type = "command"
-run = "curl -fLo nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-cwd = "~/.config"
-
-[[neovim.step]]
-type = "command"
-run = "nvim -c PlugInstall -c UpdateRemotePlugins -c qa!"
-
-[[neovim.step]]
-type = "pip"
-pip_path = "~/.pyenv/versions/neovim/bin/pip"
-package = "neovim"
-
-[[neovim.step]]
-type = "npm"
-packages = [
-    "bash-language-server",
-    "dockerfile-language-server-nodejs",
-    "pyright",
-    "vscode-langservers-extracted",
-    "yaml-language-server",
-]
