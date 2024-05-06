@@ -10,7 +10,7 @@ packages = ["zsh", "tmux", "unzip"]
 type = "git"
 repo = "https://github.com/jandamm/zgenom"
 dest = "~"
-name = ".zgenom"
+basename = ".zgenom"
 
 [[shell.step]]
 type = "git"

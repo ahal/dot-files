@@ -13,4 +13,5 @@
 .vim
 pyrightconfig.json
 objdirs
+obj-*
 node_modules

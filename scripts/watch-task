@@ -17,7 +17,7 @@ status_cmd="(taskcluster task status ${1} 2> /dev/null || echo unscheduled) | cu
 completed_re='^(completed|failed|exception)$'
 
 task_status=$(eval "$status_cmd");
-notify-send "Task ${1} is $task_status";
+notify-send "Task ${task_status}: ${1}" "https://firefox-ci-tc.services.mozilla.com/tasks/${1}";
 prev_status="$task_status"
 
 while ! [[ $task_status =~ $completed_re ]]
@@ -25,9 +25,9 @@ do
     sleep 10;
     task_status=$(eval "$status_cmd");
     if [[ $task_status != "$prev_status" ]]; then
-        notify-send "Task ${1} is $task_status";
+        notify-send "Task ${task_status}: ${1}" "https://firefox-ci-tc.services.mozilla.com/tasks/${1}";
         prev_status=$task_status
     fi
 done
 echo "$task_status"
-notify-send "Task ${1} is $task_status";
+notify-send "Task ${task_status}: ${1}" "https://firefox-ci-tc.services.mozilla.com/tasks/${1}";

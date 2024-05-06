@@ -34,7 +34,7 @@ dest = "~/.moz-phab-config"
 type = "link"
 source = "dot-files/mozconfigs"
 dest = "~"
-name = ".mozconfigs"
+basename = ".mozconfigs"
 
 [[mozilla.step]]
 type = "link"

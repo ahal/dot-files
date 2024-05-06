@@ -42,7 +42,14 @@ type = "git"
 repo = "https://github.com/pyenv/pyenv-virtualenvwrapper.git"
 branch = "master"
 dest = "~/.pyenv/plugins"
-name = "pyenv-virtualenvwrapper"
+basename = "pyenv-virtualenvwrapper"
+
+[[python.step]]
+type = "git"
+repo = "https://github.com/pyenv/pyenv-pip-migrate"
+branch = "master"
+dest = "~/.pyenv/plugins"
+basename = "pyenv-pip-migrate"
 
 [[python.step]]
 type = "command"

@@ -11,7 +11,7 @@ inject = "mercurial"
 type = "hg"
 repo = "ssh://hg@hg.sr.ht/~ahal/bookbinder"
 dest = "~/dev"
-name = "bookbinder"
+basename = "bookbinder"
 
 [[vcs.step]]
 type = "cargo"

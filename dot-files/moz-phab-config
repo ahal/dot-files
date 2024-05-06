@@ -24,7 +24,7 @@ always_full_stack = False
 branch_name_template = phab-D{rev_id}
 
 [updater]
-self_last_check = 1713205098
+self_last_check = 1714509715
 self_auto_update = True
 get_pre_releases = False
 arc_last_check = 0
