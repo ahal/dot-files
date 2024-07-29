@@ -1,6 +1,6 @@
-[[shell.step]]
-type = "dnf"
-packages = ["zsh", "tmux"]
+#[[shell.step]]
+#type = "dnf"
+#packages = ["zsh", "tmux"]
 
 [[shell.step]]
 type = "apt"

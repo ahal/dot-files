@@ -112,27 +112,6 @@ base16_chalk
 alias reset="reset && base16_chalk"
 alias clear="clear && base16_chalk"
 
-# aliases
-#alias cd="pushd -q"
-alias ag="ag --path-to-agignore ~/.ignore"
-alias dc="docker compose"
-alias indent="python -m json.tool"
-alias isitmfbt="wget -qO - isitmfbt.com | grep 'theTime' | sed -e 's/<[^>]*>//g'"
-alias jsonsort="jq -S -f ~/bin/sort.jq"
-alias ls="exa"
-alias pg="ps -ef | grep"
-alias pysite="python -c 'import site; print(site.getsitepackages()[0])'"
-alias rg="rg --ignore-file $HOME/.ignore --hidden"
-alias usage="du -h --max-depth=1 2> /dev/null | sort -h -r | head -n20"
-alias vim="nvim.appimage"
-alias nvim="nvim.appimage"
-alias which="pyenv which"
-
-
-if $IS_WSL; then
-  alias xclip="xclip -selection clipboard"
-fi
-
 # functions
 function killall {
   ps -ef | grep $1 | awk '{print $2}' | xargs kill -9
