@@ -13,7 +13,7 @@ path=(
     ~/go/bin
     ~/opt/lua-language-server/bin
     ~/opt/protoc/bin
-    /usr/lib/android-sdk/cmdline-tools/latest/bin
+    /var/lib/flatpak/exports/bin
     $path
 )
 
