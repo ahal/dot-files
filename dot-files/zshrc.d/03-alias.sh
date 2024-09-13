@@ -10,7 +10,6 @@ alias pg="ps -ef | grep"
 alias pysite="python -c 'import site; print(site.getsitepackages()[0])'"
 alias rg="rg --ignore-file $HOME/.ignore --hidden"
 alias usage="du -h --max-depth=1 2> /dev/null | sort -h -r | head -n20"
-alias which="pyenv which"
 
 # flatpaks
 alias meld="org.gnome.meld"

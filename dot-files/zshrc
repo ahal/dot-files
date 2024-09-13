@@ -157,21 +157,13 @@ if $IS_WSL; then
 fi
 
 # environment variables
-export EDITOR="nvim"
+export EDITOR="flatpak run io.neovim.nvim"
 
 # set DISPLAY properly
 if $IS_WSL; then
     export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
 else
     export DISPLAY=localhost:0.0
-fi
-
-# pyenv
-export PYTHON_CONFIGURE_OPTS="--enable-shared"
-
-if [[ -z "$VIRTUAL_ENV" ]]; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
 fi
 
 # nvm
@@ -193,8 +185,7 @@ for i in ~/.config/zshrc.d/[0-9]*; do
     source "$i"
 done
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(pyenv init -)"
+source <(fzf --zsh)
 
 if [[ -s "/home/ahal/.gvm/scripts/gvm" ]]; then
     source "/home/ahal/.gvm/scripts/gvm"
@@ -207,3 +198,7 @@ if [ -f '/var/home/ahal/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/var/home/
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/var/home/ahal/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/var/home/ahal/opt/google-cloud-sdk/completion.zsh.inc'; fi
+
+. "$HOME/.cargo/env"
+
+eval "$(direnv hook zsh)"

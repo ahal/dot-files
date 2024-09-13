@@ -11,6 +11,7 @@
 .null-ls-root
 .python-version
 .vim
+config.dev.toml
 pyrightconfig.json
 objdirs
 obj-*
