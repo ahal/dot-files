@@ -1,6 +1,6 @@
 [ui]
 username = Andrew Halberstadt <ahal@pm.me>
-merge = meld
+merge = org.gnome.meld
 ignore = /home/ahal/.hgignore
 tweakdefaults = true
 

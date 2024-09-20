@@ -33,7 +33,7 @@ vim.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
 vim.opt.undofile = true
 
 -- Python
-vim.g.python3_host_prog = "/home/ahal/.pyenv/versions/neovim/bin/python"
+vim.g.python3_host_prog = "/home/ahal/.virtualenvs/neovim/bin/python"
 
 -- Key maps
 vim.g.mapleader = ' '

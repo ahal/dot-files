@@ -185,8 +185,6 @@ for i in ~/.config/zshrc.d/[0-9]*; do
     source "$i"
 done
 
-source <(fzf --zsh)
-
 if [[ -s "/home/ahal/.gvm/scripts/gvm" ]]; then
     source "/home/ahal/.gvm/scripts/gvm"
 fi
@@ -202,3 +200,5 @@ if [ -f '/var/home/ahal/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/var
 . "$HOME/.cargo/env"
 
 eval "$(direnv hook zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,5 +1,5 @@
 # aliases
-alias cd="pushd -q"
+#alias cd="pushd -q"
 alias ag="ag --path-to-agignore ~/.ignore"
 alias dc="docker compose"
 alias indent="python -m json.tool"
