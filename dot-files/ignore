@@ -5,12 +5,17 @@
 *.tar.gz
 *.pyc
 *.pyo
+*.t.err
+.envrc
 .hg
+.jj
+.jj-conflict-*
 .git
 .gitattributes
 .null-ls-root
 .python-version
 .vim
+.venv
 config.dev.toml
 pyrightconfig.json
 objdirs

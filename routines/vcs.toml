@@ -38,6 +38,16 @@ source = "dot-files/ignore"
 dest = "~/.ignore"
 
 [[vcs.step]]
+type = "link"
+source = "dot-files/ignore"
+dest = "~/.gitignore"
+
+[[vcs.step]]
+type = "link"
+source = "dot-files/jj-config.toml"
+dest = "~/.config/jj/config.toml"
+
+[[vcs.step]]
 type = "dnf"
 packages = ["meld"]
 

@@ -1,0 +1,33 @@
+[user]
+name = "Andrew Halberstadt"
+email = "ahal@mozilla.com"
+
+[signing]
+sign-all = true
+backend = "gpg"
+key = "83871F16BEF61C4F2CA5CFFE186B1CE58780653F"
+
+[colors]
+bookmarks = "green"
+change_id = "blue"
+"diff removed token" = { underline = false }
+"diff added token" = { underline = false }
+"node immutable" = "red"
+"working_copy bookmarks" = "green"
+"working_copy change_id" = "blue"
+
+[revsets]
+log = "present(@) | trunk() | ancestors(immutable_heads().. ~ ::untracked_remote_bookmarks(), 2)"
+
+[template-aliases]
+'format_short_signature(signature)' = 'signature.username()'
+
+[ui]
+default-command = "log"
+editor = "nvim"
+
+[ui.diff]
+format = "git"
+
+[ui.movement]
+edit = true

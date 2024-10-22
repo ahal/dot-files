@@ -1,1 +1,1 @@
-PROMPT='%{$fg[yellow]%}[%~% ]%{$fg[blue]%}$(_scm_prompt "(%s)")%(?.%{$fg[grey]%}.%{$fg[red]%})%B$%b '
+PROMPT='%{$fg[yellow]%}[%~% ]%(?.%{$fg[grey]%}.%{$fg[red]%})%B$%b '

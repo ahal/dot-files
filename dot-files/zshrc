@@ -200,5 +200,6 @@ if [ -f '/var/home/ahal/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/var
 . "$HOME/.cargo/env"
 
 eval "$(direnv hook zsh)"
+#eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
