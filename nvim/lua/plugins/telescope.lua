@@ -4,6 +4,7 @@ return {
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'zschreur/telescope-jj.nvim',
       {
         'nvim-telescope/telescope-live-grep-args.nvim', version = "^1.0.0"
       }
@@ -27,6 +28,7 @@ return {
 
       -- Enable telescope fzf native, if installed
       pcall(require('telescope').load_extension, 'fzf')
+      require('telescope').load_extension('jj')
       require('telescope').load_extension('live_grep_args')
 
       -- See `:help telescope.builtin`
