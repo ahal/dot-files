@@ -7,6 +7,9 @@ sign-all = true
 backend = "gpg"
 key = "83871F16BEF61C4F2CA5CFFE186B1CE58780653F"
 
+[aliases]
+shortlog = ["log", "--limit=10"]
+
 [colors]
 bookmarks = "green"
 change_id = "blue"
@@ -19,11 +22,14 @@ change_id = "blue"
 [revsets]
 log = "present(@) | trunk() | ancestors(immutable_heads().. ~ ::untracked_remote_bookmarks(), 2)"
 
+[revset-aliases]
+"feat(x)" = "::x ~ immutable()"
+
 [template-aliases]
 'format_short_signature(signature)' = 'signature.username()'
 
 [ui]
-default-command = "log"
+default-command = "shortlog"
 editor = "nvim"
 
 [ui.diff]
