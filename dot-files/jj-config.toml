@@ -7,6 +7,10 @@ sign-all = true
 backend = "gpg"
 key = "83871F16BEF61C4F2CA5CFFE186B1CE58780653F"
 
+[git]
+push = "ahal"
+fetch = ["origin", "ahal"]
+
 [aliases]
 shortlog = ["log", "--limit=10"]
 
@@ -26,11 +30,13 @@ log = "present(@) | trunk() | ancestors(immutable_heads().. ~ ::untracked_remote
 "feat(x)" = "::x ~ immutable()"
 
 [template-aliases]
-'format_short_signature(signature)' = 'signature.username()'
+"format_short_signature(signature)" = 'signature.username()'
+"link(target, label)" = 'raw_escape_sequence("\x1b]8;;" ++ target ++ "\x1b\\") ++ label ++ raw_escape_sequence("\x1b]8;;\x1b\\")'
 
 [ui]
 default-command = "shortlog"
 editor = "nvim"
+merge-editor = ["org.gnome.meld", "$left", "$base", "$right", "-o", "$output", "--auto-merge"]
 
 [ui.diff]
 format = "git"
