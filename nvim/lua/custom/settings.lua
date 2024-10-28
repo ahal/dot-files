@@ -25,7 +25,6 @@ vim.opt.incsearch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
-
 -- Backup
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -60,6 +59,10 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)         -- diagnostics
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+vim.keymap.set('x', 'il', 'g_o^')                           -- line text object
+vim.keymap.set('o', 'il', ':<C-u>normal vil<CR>')
+vim.keymap.set('x', 'al', '$o0')
+vim.keymap.set('o', 'al', ':<C-u>normal val<CR>')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
