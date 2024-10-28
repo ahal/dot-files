@@ -10,9 +10,11 @@ key = "83871F16BEF61C4F2CA5CFFE186B1CE58780653F"
 [git]
 push = "ahal"
 fetch = ["origin", "ahal"]
+push-bookmark-prefix = "ahal/push-"
 
 [aliases]
-shortlog = ["log", "--limit=10"]
+shortlog = ["log", "--limit=12"]
+heads = ["log", "-r", "visible_heads() & mutable()", "-T", "change_id.shortest() ++ \" \" ++ description", "--no-graph"]
 
 [colors]
 bookmarks = "green"
@@ -30,7 +32,7 @@ log = "present(@) | trunk() | ancestors(immutable_heads().. ~ ::untracked_remote
 "feat(x)" = "::x ~ immutable()"
 
 [template-aliases]
-"format_short_signature(signature)" = 'signature.username()'
+"format_short_signature(signature)" = 'signature.email().local()'
 "link(target, label)" = 'raw_escape_sequence("\x1b]8;;" ++ target ++ "\x1b\\") ++ label ++ raw_escape_sequence("\x1b]8;;\x1b\\")'
 
 [ui]

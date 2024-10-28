@@ -106,11 +106,11 @@ fpath+="${HOME}/.zgen/zsh-users/zsh-completions-master/src"
 
 autoload -U compinit && compinit
 # base16
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && source "$BASE16_SHELL/profile_helper.sh"
-base16_chalk
-alias reset="reset && base16_chalk"
-alias clear="clear && base16_chalk"
+#BASE16_SHELL=$HOME/.config/base16-shell/
+#[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && source "$BASE16_SHELL/profile_helper.sh"
+#base16_chalk
+#alias reset="reset && base16_chalk"
+#alias clear="clear && base16_chalk"
 
 # functions
 function killall {

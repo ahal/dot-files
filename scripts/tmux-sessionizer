@@ -17,7 +17,7 @@ selected_root=$root_dir/$selected
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     tmux new-session -s $selected -c $selected_root
-    base16_chalk
+    #base16_chalk
     exit 0
 fi
 
@@ -26,4 +26,4 @@ if ! tmux has-session -t=$selected 2> /dev/null; then
 fi
 
 tmux switch-client -t $selected
-base16_chalk
+#base16_chalk

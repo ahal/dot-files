@@ -1,6 +1,5 @@
 *.rej
 *.orig
-*egg-info*
 *.egg*
 *.tar.gz
 *.pyc
