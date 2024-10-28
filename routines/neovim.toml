@@ -1,4 +1,5 @@
 [[neovim.step]]
+test = "change"
 type = "command"
 run = [
   "curl --clobber -L -o nvim.appimage http://github.com/neovim/neovim/releases/latest/download/nvim.appimage",
