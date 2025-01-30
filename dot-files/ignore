@@ -15,7 +15,6 @@
 .python-version
 .vim
 .venv
-config.dev.toml
 pyrightconfig.json
 objdirs
 obj-*

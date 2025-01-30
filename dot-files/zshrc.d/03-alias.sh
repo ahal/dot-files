@@ -12,8 +12,8 @@ alias rg="rg --ignore-file $HOME/.ignore --hidden"
 alias usage="du -h --max-depth=1 2> /dev/null | sort -h -r | head -n20"
 
 # flatpaks
-alias meld="org.gnome.meld"
-alias nvim="io.neovim.nvim"
+#alias meld="org.gnome.meld"
+#alias nvim="io.neovim.nvim"
 
 # jujutsu
 alias jj-push="pre-commit run -a && jj git push"

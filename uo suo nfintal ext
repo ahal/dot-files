@@ -1,0 +1,141 @@
+[4mtoolbox[24m(1)                                                                                                        General Commands Manual                                                                                                        [4mtoolbox[24m(1)
+
+[1mNAME[0m
+       toolbox - Tool for interactive command line environments on Linux
+
+[1mSYNOPSIS[0m
+       [1mtoolbox [22m[[4m--assumeyes[24m | [4m-y[24m]
+               [[4m--help[24m | [4m-h[24m]
+               [[4m--log-level[24m [4mLEVEL[24m]
+               [[4m--log-podman[24m]
+               [[4m--verbose[24m | [4m-v[24m]
+               [4mCOMMAND[24m [[4mARGS[24m...]
+
+[1mDESCRIPTION[0m
+       Toolbx  is  a tool for Linux, which allows the use of interactive command line environments for software development and troubleshooting the host operating system, without having to install software on the host. It is built on top of Podman and
+       other standard container technologies from OCI.
+
+       Toolbx environments have seamless access to the user’s home directory, the Wayland and X11 sockets, networking (including Avahi), removable devices (like USB sticks), systemd journal, SSH agent, D-Bus, ulimits, /dev and the udev database, etc..
+
+       This is particularly useful on OSTree based operating systems like Fedora CoreOS and Silverblue. The intention of these systems is to discourage installation of software on the host, and instead install software as (or  in)  containers  —  they
+       mostly don't even have package managers like DNF or YUM.  This makes it difficult to set up a development environment or troubleshoot the operating system in the usual way.
+
+       Toolbx  solves  this problem by providing a fully mutable container within which one can install their favourite development and troubleshooting tools, editors and SDKs. For example, it's possible to do [1myum install ansible [22mwithout affecting the
+       base operating system.
+
+       However, this tool doesn't [4mrequire[24m using an OSTree based system. It works equally well on Fedora Workstation and Server, and that's a useful way to incrementally adopt containerization.
+
+       The Toolbx environment is based on an OCI image. On Fedora this is the [1mfedora-toolbox [22mimage. This image is used to create a Toolbx container that offers the interactive command line environment.
+
+       Note that Toolbx makes no promise about security beyond what’s already available in the usual command line environment on the host that everybody is familiar with.
+
+[1mSupported operating system distributions[0m
+       By default, Toolbx tries to use an image matching the host operating system distribution for creating containers. If the host is not supported, then it falls back to a Fedora image. Supported host operating systems are:
+
+              • Arch Linux
+
+              • Fedora
+
+              • Red Hat Enterprise Linux >= 8.5
+
+              • Ubuntu
+
+       However, it's possible to create containers for a different distribution through the use of the [1m--distro [22mand [1m--release [22moptions that are accepted by the relevant commands, or their counterparts in the configuration file. The [1m--distro [22mflag speci‐
+       fies the name of the distribution, and [1m--release [22mspecifies its version. Supported combinations are:
+
+       ┌────────┬────────────────────────────────────────┐
+       │ [1mDistro [22m│ [1mRelease                                [22m│
+       ├────────┼────────────────────────────────────────┤
+       │ arch   │ latest or rolling                      │
+       ├────────┼────────────────────────────────────────┤
+       │ fedora │ <release> or f<release> eg., 36 or f36 │
+       ├────────┼────────────────────────────────────────┤
+       │ rhel   │ <major>.<minor> eg., 8.5               │
+       ├────────┼────────────────────────────────────────┤
+       │ ubuntu │ <YY>.<MM> eg., 22.04                   │
+       └────────┴────────────────────────────────────────┘
+
+[1mUSAGE[0m
+   [1mCreate a Toolbx container:[0m
+       [user@hostname ~]$ toolbox create
+       Image required to create toolbox container.
+       Download registry.fedoraproject.org/fedora-toolbox:36 (294.1MB)? [y/N]: y
+       Created container: fedora-toolbox-36
+       Enter with: toolbox enter
+       [user@hostname ~]$
+
+   [1mEnter the Toolbx container:[0m
+       [user@hostname ~]$ toolbox enter
+       ⬢[user@toolbox ~]$
+
+   [1mRemove the Toolbx container:[0m
+       [user@hostname ~]$ toolbox rm fedora-toolbox-36
+       [user@hostname ~]$
+
+[1mGLOBAL OPTIONS[0m
+       The following options are understood:
+
+       [1m--assumeyes, -y[0m
+
+       Automatically answer yes for all questions.
+
+       [1m--help, -h[0m
+
+       Print a synopsis of this manual and exit.
+
+       [1m--log-level[22m=[4mlevel[0m
+
+       Log messages above specified level: debug, info, warn, error, fatal or panic (default: error)
+
+       [1m--log-podman[0m
+
+       Show log messages of invocations of Podman based on the logging level specified by option [1mlog-level[22m.
+
+       [1m--verbose, -v[0m
+
+       Same as [1m--log-level=debug[22m. Use [1m-vv [22mto include [1m--log-podman[22m.
+
+[1mCOMMANDS[0m
+       Commands for working with Toolbx containers and images:
+
+       [1mtoolbox-create(1)[0m
+
+       Create a new Toolbx container.
+
+       [1mtoolbox-enter(1)[0m
+
+       Enter a Toolbx container for interactive use.
+
+       [1mtoolbox-help(1)[0m
+
+       Display help information about Toolbx.
+
+       [1mtoolbox-init-container(1)[0m
+
+       Initialize a running container.
+
+       [1mtoolbox-list(1)[0m
+
+       List existing Toolbx containers and images.
+
+       [1mtoolbox-rm(1)[0m
+
+       Remove one or more Toolbx containers.
+
+       [1mtoolbox-rmi(1)[0m
+
+       Remove one or more Toolbx images.
+
+       [1mtoolbox-run(1)[0m
+
+       Run a command in an existing Toolbx container.
+
+[1mFILES[0m
+       [1mtoolbox.conf(5)[0m
+
+       Toolbx configuration file.
+
+[1mSEE ALSO[0m
+       [1mpodman(1)[22m, https://github.com/containers/toolbox
+
+                                                                                                                                                                                                                                                 [4mtoolbox[24m(1)

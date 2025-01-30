@@ -11,6 +11,7 @@ key = "83871F16BEF61C4F2CA5CFFE186B1CE58780653F"
 push = "ahal"
 fetch = ["origin", "ahal"]
 push-bookmark-prefix = "ahal/push-"
+subprocess = true
 
 [aliases]
 shortlog = ["log", "--limit=12"]
@@ -38,10 +39,11 @@ log = "present(@) | trunk() | ancestors(immutable_heads().. ~ ::untracked_remote
 [ui]
 default-command = "shortlog"
 editor = "nvim"
-merge-editor = ["org.gnome.meld", "$left", "$base", "$right", "-o", "$output", "--auto-merge"]
+merge-editor = ["meld", "$left", "$base", "$right", "-o", "$output", "--auto-merge"]
 
 [ui.diff]
 format = "git"
+#tool = ["difft", "--color=always", "$left", "$right"]
 
 [ui.movement]
 edit = true
