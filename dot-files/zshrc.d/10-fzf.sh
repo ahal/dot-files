@@ -1,7 +1,7 @@
 export FZF_DEFAULT_COMMAND='rg --hidden --no-filename --no-heading --ignore-file ~/.ignore --files'
 export FZF_CTRL_T_COMMAND='rg --hidden --ignore-file ~/.ignore --files'
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 fzf-history-widget-custom() {
   local selected num

@@ -1,15 +1,14 @@
 [user]
 	email = ahal@pm.me
 	name = Andrew Halberstadt
-	signingkey = 83871F16BEF61C4F2CA5CFFE186B1CE58780653F
+	signingkey = EB2B039C5806F7CE4B4C64FADD4712C6E7AAB6F6
 [color]
 	ui = auto
 [diff]
 	context = 8
 [cinnabar]
 	helper = /home/ahal/.mozbuild/git-cinnabar/git-cinnabar-helper
-	version-check = 1645800343
-	fsck = 1568905047
+	version-check = 1746038244
 [mozreview]
 	nickname = ahal
 [core]
@@ -113,5 +112,41 @@
 	directory = /tmp/tmpc0u7t9kr/destination
 	directory = /tmp/tmpspw7rqd2/destination
 	directory = /tmp/tmpgvrj2okt/destination
+	directory = /tmp/tmp_wawglsi/destination
+	directory = /tmp/tmp0x0fo_9_/destination
+	directory = /tmp/tmpy7j7y7t4/destination
+	directory = /tmp/tmphfg7faks/destination
+	directory = /tmp/tmpvo1xij4v/destination
+	directory = /tmp/tmpbksokt7g/destination
+	directory = /tmp/tmp9tjb78sb/destination
+	directory = /tmp/tmpqaf_279g/destination
+	directory = /tmp/tmpbcosvztp/destination
+	directory = /tmp/tmp_c_0yxf2/destination
+	directory = /tmp/tmpfu9mila0/destination
+	directory = /tmp/tmpbm3szsla/destination
+	directory = /tmp/tmpqxt3l2eu/destination
+	directory = /tmp/tmpqh5anxg5/destination
+	directory = /tmp/tmpwtk2r43u/destination
+	directory = /tmp/tmpnvzj8j0x/destination
+	directory = /tmp/tmpqqnsobaj/destination
+	directory = /tmp/tmpzwm64o99/destination
+	directory = /tmp/tmp_46quegs/destination
+	directory = /tmp/tmptt6_9loz/destination
+	directory = /tmp/tmpfqlio5i_/destination
+	directory = /tmp/tmpeqx_k7w9/destination
+	directory = /tmp/tmp2s1zi7y_/destination
+	directory = /tmp/tmpogjbq9t3/destination
+	directory = /tmp/tmpwyeqg6nt/destination
+	directory = /tmp/tmpwmnm0yo0/destination
+	directory = /tmp/tmpk01j5s7_/destination
+	directory = /tmp/tmpawv2xyvh/destination
+	directory = /tmp/tmper77klcb/destination
+	directory = /tmp/tmp7s5a9v6g/destination
+	directory = /tmp/tmpmzwjadpq/destination
+	directory = /tmp/tmpdfwiog6b/destination
+	directory = /tmp/tmpage1o0uv/destination
+	directory = /tmp/tmpt2xvxaox/destination
+	directory = /tmp/tmpaelawrvt/destination
+	directory = /tmp/tmp_50sre7_/destination
 [init]
 	defaultBranch = main

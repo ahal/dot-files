@@ -13,60 +13,60 @@ packages = [
   "zlib-devel",
 ]
 
-[[python.step]]
-type = "apt"
-packages = [
-  "build-essential",
-  "libbz2-dev",
-  "libffi-dev",
-  "liblzma-dev",
-  "libreadline-dev",
-  "libsqlite3-dev",
-  "libssl-dev",
-  "libncurses5-dev",
-  "libncursesw5-dev",
-  "llvm",
-  "python3-dev",
-  "tk-dev",
-  "xz-utils",
-  "zlib1g-dev",
-]
+#[[python.step]]
+#type = "apt"
+#packages = [
+#  "build-essential",
+#  "libbz2-dev",
+#  "libffi-dev",
+#  "liblzma-dev",
+#  "libreadline-dev",
+#  "libsqlite3-dev",
+#  "libssl-dev",
+#  "libncurses5-dev",
+#  "libncursesw5-dev",
+#  "llvm",
+#  "python3-dev",
+#  "tk-dev",
+#  "xz-utils",
+#  "zlib1g-dev",
+#]
 
-[[python.step]]
-type = "command"
-run = "curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash"
-check = "ls /home/ahal/.pyenv"
-
-[[python.step]]
-type = "git"
-repo = "https://github.com/pyenv/pyenv-virtualenvwrapper.git"
-branch = "master"
-dest = "~/.pyenv/plugins"
-basename = "pyenv-virtualenvwrapper"
-
-[[python.step]]
-type = "git"
-repo = "https://github.com/pyenv/pyenv-pip-migrate"
-branch = "master"
-dest = "~/.pyenv/plugins"
-basename = "pyenv-pip-migrate"
-
-[[python.step]]
-type = "command"
-run = [
-  "~/.pyenv/bin/pyenv install -s 3.10.5",
-  "~/.pyenv/bin/pyenv global 3.10.5",
-  "~/.pyenv/shims/pip install --upgrade pip",
-]
-
-[[python.step]]
-type = "pip"
-packages = ["pipx"]
-
-[[python.step]]
-type = "pipx"
-package = "mozconfigwrapper"
-
-[[python.step]]
-type = "pipx"
-package = "poetry"
+#[[python.step]]
+#type = "command"
+#run = "curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash"
+#check = "ls /home/ahal/.pyenv"
+#
+#[[python.step]]
+#type = "git"
+#repo = "https://github.com/pyenv/pyenv-virtualenvwrapper.git"
+#branch = "master"
+#dest = "~/.pyenv/plugins"
+#basename = "pyenv-virtualenvwrapper"
+#
+#[[python.step]]
+#type = "git"
+#repo = "https://github.com/pyenv/pyenv-pip-migrate"
+#branch = "master"
+#dest = "~/.pyenv/plugins"
+#basename = "pyenv-pip-migrate"
+#
+#[[python.step]]
+#type = "command"
+#run = [
+#  "~/.pyenv/bin/pyenv install -s 3.10.5",
+#  "~/.pyenv/bin/pyenv global 3.10.5",
+#  "~/.pyenv/shims/pip install --upgrade pip",
+#]
+#
+#[[python.step]]
+#type = "pip"
+#packages = ["pipx"]
+#
+#[[python.step]]
+#type = "pipx"
+#package = "mozconfigwrapper"
+#
+#[[python.step]]
+#type = "pipx"
+#package = "poetry"

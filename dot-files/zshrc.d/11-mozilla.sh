@@ -25,7 +25,7 @@ tc-signin () {
             expiry="480m"
             scopes=(
                 "auth:list-clients"
-                #"hooks:list-hooks:*"
+                "hooks:list-hooks:*"
             )
             ;;
         relduty)

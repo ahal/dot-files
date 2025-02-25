@@ -1,0 +1,5 @@
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdirs/addons
+
+ac_add_options --enable-project=browser/extensions
+#ac_add_options --disable-compile-environment
+#ac_add_options --build-backends=FasterMake,RecursiveMake

@@ -3,15 +3,20 @@ name = "Andrew Halberstadt"
 email = "ahal@mozilla.com"
 
 [signing]
-sign-all = true
+behavior = "own" 
 backend = "gpg"
-key = "83871F16BEF61C4F2CA5CFFE186B1CE58780653F"
+key = "EB2B039C5806F7CE4B4C64FADD4712C6E7AAB6F6"
 
 [git]
 push = "ahal"
 fetch = ["origin", "ahal"]
 push-bookmark-prefix = "ahal/push-"
-subprocess = true
+
+[core]
+fsmonitor = "watchman"
+
+[core.watchman]
+register-snapshot-trigger = true
 
 [aliases]
 shortlog = ["log", "--limit=12"]

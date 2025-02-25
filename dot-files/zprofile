@@ -13,6 +13,7 @@ path=(
     ~/go/bin
     ~/opt/lua-language-server/bin
     ~/opt/protoc/bin
+    ~/opt/neovim/bin
     /var/lib/flatpak/exports/bin
     $path
 )

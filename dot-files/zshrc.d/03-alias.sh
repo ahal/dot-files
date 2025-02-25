@@ -1,5 +1,5 @@
 # aliases
-#alias cd="pushd -q"
+alias cd="pushd -q"
 alias ag="ag --path-to-agignore ~/.ignore"
 alias dc="docker compose"
 alias indent="python -m json.tool"
@@ -9,6 +9,7 @@ alias jsonsort="jq -S -f ~/bin/sort.jq"
 alias pg="ps -ef | grep"
 alias pysite="python -c 'import site; print(site.getsitepackages()[0])'"
 alias rg="rg --ignore-file $HOME/.ignore --hidden"
+alias rgf="rg --files | rg"
 alias usage="du -h --max-depth=1 2> /dev/null | sort -h -r | head -n20"
 
 # flatpaks
