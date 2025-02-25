@@ -8,7 +8,7 @@ return {
     config = function()
       require('gitlinker').setup({
         opts = {
-          remote = 'mozilla',
+          remote = 'origin',
         }
       })
     end

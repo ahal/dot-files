@@ -11,6 +11,7 @@ vim.o.completeopt = 'menuone,noselect'  -- Set completeopt to have a better comp
 vim.opt.wrap = false
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.o.showtabline = 2
 
 -- Tabbing
 vim.opt.expandtab = true
@@ -74,3 +75,23 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+-- Change tab's working directory
+vim.api.nvim_create_user_command(
+  'TabChangeDir',
+  function(opts)
+    local name
+    name = string.gsub(opts.args, "/$", "")
+    if string.find(name, "/") then
+      name = name:match(".+/(.*)$")
+    end
+
+    vim.cmd('tcd ' .. opts.args)
+    vim.cmd('Tabby rename_tab ' .. name)
+  end,
+  {
+    nargs = 1,
+    complete = 'dir',
+  }
+)
+vim.cmd("cnoreabbrev tcd TabChangeDir")
