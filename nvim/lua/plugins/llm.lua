@@ -22,10 +22,10 @@ return {
     {
       "zbirenbaum/copilot.lua",
       cmd = "Copilot",
-  event = "InsertEnter",
-  config = function()
-    require("copilot").setup({})
-  end,
+      event = "InsertEnter",
+      config = function()
+        require("copilot").setup({})
+      end,
     },
     {
       -- support for image pasting
