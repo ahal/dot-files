@@ -77,18 +77,54 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.api.nvim_create_user_command(
   'TabChangeDir',
   function(opts)
+    local path = opts.args
+    
+    -- Find the git repository root
+    local git_root = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
+    
+    -- If path doesn't start with / or ~, treat it as relative to repo root
+    if git_root and not (path:match("^/") or path:match("^~")) then
+      path = git_root .. "/" .. path
+    end
+    
+    -- Remove trailing slash and extract name for tab
     local name
-    name = string.gsub(opts.args, "/$", "")
+    name = string.gsub(path, "/$", "")
     if string.find(name, "/") then
       name = name:match(".+/(.*)$")
     end
 
-    vim.cmd('tcd ' .. opts.args)
+    vim.cmd('tcd ' .. path)
     vim.cmd('Tabby rename_tab ' .. name)
   end,
   {
     nargs = 1,
-    complete = 'dir',
+    complete = function(ArgLead, CmdLine, CursorPos)
+      local git_root = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
+      
+      -- If no git root or path starts with / or ~, use default dir completion
+      if not git_root or ArgLead:match("^/") or ArgLead:match("^~") then
+        return vim.fn.getcompletion(ArgLead, 'dir')
+      end
+      
+      -- Build the full path to search
+      local search_path = git_root .. "/" .. ArgLead
+      
+      -- Get completions relative to git root
+      local completions = vim.fn.glob(search_path .. "*", false, true)
+      local results = {}
+      
+      for _, completion in ipairs(completions) do
+        -- Only include directories
+        if vim.fn.isdirectory(completion) == 1 then
+          -- Strip the git root path to show relative paths
+          local relative = completion:sub(#git_root + 2)
+          table.insert(results, relative)
+        end
+      end
+      
+      return results
+    end,
   }
 )
 vim.cmd("cnoreabbrev tcd TabChangeDir")
