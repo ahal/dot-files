@@ -70,6 +70,7 @@ export ANDROID_SDK_ROOT='/usr/lib/android-sdk'
 export GECKO=$HOME/dev/mozilla-unified
 export MACHRC=$HOME/.machrc
 export TASKCLUSTER_ROOT_URL=https://firefox-ci-tc.services.mozilla.com
+export MOZ_AVOID_JJ_VCS=0
 
 # turn on mozilla data collection
 export BUILD_SYSTEM_TELEMETRY=1

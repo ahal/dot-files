@@ -20,3 +20,5 @@ objdirs
 obj-*
 node_modules
 ty.toml
+CLAUDE.md
+.claude

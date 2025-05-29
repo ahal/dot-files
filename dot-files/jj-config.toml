@@ -10,17 +10,17 @@ key = "EB2B039C5806F7CE4B4C64FADD4712C6E7AAB6F6"
 [git]
 push = "ahal"
 fetch = ["origin", "ahal"]
-push-bookmark-prefix = "ahal/push-"
 
-[core]
-fsmonitor = "watchman"
+[fsmonitor]
+backend = "watchman"
 
-[core.watchman]
+[fsmonitor.watchman]
 register-snapshot-trigger = true
 
 [aliases]
+heads = ["log", "-r", "visible_heads() & mutable()", "-T", "builtin_log_compact", "--no-graph"]
 shortlog = ["log", "--limit=12"]
-heads = ["log", "-r", "visible_heads() & mutable()", "-T", "change_id.shortest() ++ \" \" ++ description", "--no-graph"]
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 
 [colors]
 bookmarks = "green"
@@ -41,14 +41,14 @@ log = "present(@) | trunk() | ancestors(immutable_heads().. ~ ::untracked_remote
 "format_short_signature(signature)" = 'signature.email().local()'
 "link(target, label)" = 'raw_escape_sequence("\x1b]8;;" ++ target ++ "\x1b\\") ++ label ++ raw_escape_sequence("\x1b]8;;\x1b\\")'
 
+[templates]
+git_push_bookmark = '"ahal/push-" ++ change_id.short()'
+
 [ui]
 default-command = "shortlog"
 editor = "nvim"
 merge-editor = ["meld", "$left", "$base", "$right", "-o", "$output", "--auto-merge"]
-
-[ui.diff]
-format = "git"
-#tool = ["difft", "--color=always", "$left", "$right"]
+diff-formatter = ":git"
 
 [ui.movement]
 edit = true

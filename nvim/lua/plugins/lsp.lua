@@ -176,7 +176,7 @@ return {
   -- Useful status updates for LSP
   {
     'j-hui/fidget.nvim',
-    tag = "v1.5.0",
+    tag = "v1.6.1",
     event = "LspAttach",
     config = function()
       require('fidget').setup()
