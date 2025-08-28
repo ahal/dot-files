@@ -15,6 +15,7 @@
 .python-version
 .vim
 .venv
+.watchmanconfig
 pyrightconfig.json
 objdirs
 obj-*
