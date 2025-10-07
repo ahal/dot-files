@@ -17,5 +17,9 @@ return {
       cmd.j "tug"
       cmd.log {}
     end, { desc = "JJ tug" })
+
+    vim.keymap.set("n", "<leader>ja", function()
+      cmd.j("file annotate " .. vim.fn.expand("%"))
+    end, { desc = "JJ file annotate" })
   end,
 }
