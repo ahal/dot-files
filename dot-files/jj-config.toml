@@ -15,12 +15,21 @@ fetch = ["origin", "ahal"]
 backend = "watchman"
 
 [fsmonitor.watchman]
-register-snapshot-trigger = true
+register-snapshot-trigger = false
 
 [aliases]
 heads = ["log", "-r", "visible_heads() & mutable()", "-T", "builtin_log_compact", "--no-graph"]
 shortlog = ["log", "--limit=12"]
-tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "latest(::@ ~ empty())"]
+pull = ["util", "exec", "--", "bash", "-c", """
+if [ -z "$1" ]; then
+    echo "missing branch"
+    exit 1
+fi
+set -euo pipefail
+jj git fetch -b $1
+jj rebase -s "at_operation(@-, $1+) & mutable()" -d $1
+""", ""]
 
 [colors]
 bookmarks = "green"
