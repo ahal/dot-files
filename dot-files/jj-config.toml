@@ -5,7 +5,7 @@ email = "ahal@mozilla.com"
 [signing]
 behavior = "own" 
 backend = "gpg"
-key = "EB2B039C5806F7CE4B4C64FADD4712C6E7AAB6F6"
+key = "83871F16BEF61C4F2CA5CFFE186B1CE58780653F"
 
 [git]
 push = "ahal"

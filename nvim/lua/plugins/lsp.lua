@@ -119,7 +119,7 @@ return {
           'eslint',
           'lua_ls',
           'marksman',       -- markdown
-          'pyright',
+          'pyrefly',
           'rust_analyzer',
           'taplo',          -- toml
           'yamlls',

@@ -1,33 +1,4 @@
 [[vcs.step]]
-type = "pipx"
-package = "mercurial"
-
-[[vcs.step]]
-type = "pipx"
-package = "hg-evolve"
-inject = "mercurial"
-
-[[vcs.step]]
-type = "hg"
-repo = "ssh://hg@hg.sr.ht/~ahal/bookbinder"
-dest = "~/dev"
-basename = "bookbinder"
-
-[[vcs.step]]
-type = "cargo"
-packages = ["git-absorb"]
-
-[[vcs.step]]
-type = "link"
-source = "dot-files/hgrc"
-dest = "~/.hgrc"
-
-[[vcs.step]]
-type = "link"
-source = "dot-files/hgignore"
-dest = "~/.hgignore"
-
-[[vcs.step]]
 type = "link"
 source = "dot-files/gitconfig"
 dest = "~/.gitconfig"
@@ -54,8 +25,3 @@ packages = ["meld"]
 [[vcs.step]]
 type = "apt"
 packages = ["meld"]
-
-[[vcs.step]]
-type = "command"
-run = "wget https://www.mercurial-scm.org/repo/hg/raw-file/tip/contrib/zsh_completion -O _hg"
-cwd = "~/.zfunc"

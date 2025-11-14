@@ -9,16 +9,6 @@ check = "test $(curl -s https://api.github.com/repos/neovim/neovim/releases/late
 cwd = "~/bin"
 
 [[neovim.step]]
-type = "command"
-run = "pyenv virtualenv neovim"
-check = "pyenv virtualenvs --bare | grep -q neovim"
-
-[[neovim.step]]
-type = "pip"
-pip_path = "~/.pyenv/versions/neovim/bin/pip"
-packages = "neovim"
-
-[[neovim.step]]
 type = "link"
 source = "nvim"
 dest = "~/.config"
