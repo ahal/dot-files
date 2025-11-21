@@ -80,15 +80,8 @@ return {
       vim.opt.signcolumn = 'yes'
     end,
     config = function()
-      local lsp_defaults = require('lspconfig').util.default_config
-
-      -- Add cmp_nvim_lsp capabilities settings to lspconfig
-      -- This should be executed before you configure any language server
-      lsp_defaults.capabilities = vim.tbl_deep_extend(
-        'force',
-        lsp_defaults.capabilities,
-        require('cmp_nvim_lsp').default_capabilities()
-      )
+      -- Get capabilities from cmp-nvim-lsp
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       -- LspAttach is where you enable features that only work
       -- if there is a language server active in the file
@@ -110,27 +103,52 @@ return {
         end,
       })
 
+      -- Configure LSP servers using vim.lsp.config (new API)
+      local servers = {
+        'bashls',
+        'clangd',
+        'dockerls',
+        'esbonio',        -- sphinx
+        'eslint',
+        'lua_ls',
+        'marksman',       -- markdown
+        'pyrefly',
+        'rust_analyzer',
+        'taplo',          -- toml
+      }
+
+      -- Set default config for all servers
+      for _, server_name in ipairs(servers) do
+        vim.lsp.config(server_name, {
+          capabilities = capabilities,
+        })
+      end
+
+      -- Configure yamlls with custom settings
+      vim.lsp.config('yamlls', {
+        capabilities = capabilities,
+        settings = {
+          yaml = {
+            keyOrdering = false,
+          }
+        }
+      })
+
+      -- Mason-lspconfig will automatically enable installed servers
       require('mason-lspconfig').setup({
         ensure_installed = {
-          'bashls',
-          'clangd',
-          'dockerls',
+          'bashls',         -- bash
+          'clangd',         -- c++
+          'dockerls',       -- docker
           'esbonio',        -- sphinx
-          'eslint',
-          'lua_ls',
+          'eslint',         -- javascript
+          'lua_ls',         -- lua
           'marksman',       -- markdown
-          'pyrefly',
-          'rust_analyzer',
+          'pyrefly',        -- python
+          'rust_analyzer',  -- rust
           'taplo',          -- toml
-          'yamlls',
+          'yamlls',         -- yaml
         },
-        handlers = {
-          -- this first function is the "default handler"
-          -- it applies to every language server without a "custom handler"
-          function(server_name)
-            require('lspconfig')[server_name].setup({})
-          end,
-        }
       })
 
       require('mason-null-ls').setup({
@@ -142,22 +160,6 @@ return {
       require('null-ls').setup({
         on_attach = function(client, bufnr)
           vim.bo[bufnr].formatexpr = nil
-        end
-      })
-
-      -- Language server overrides
-      local lspconfig = require('lspconfig')
-      lspconfig.yamlls.setup({
-        settings = {
-          yaml = {
-            keyOrdering = false,
-          }
-        }
-      })
-
-      lspconfig.pyright.setup({
-        on_attach = function(client, bufnr)
-          require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
         end
       })
     end
