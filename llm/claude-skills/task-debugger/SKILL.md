@@ -23,22 +23,18 @@ The Taskcluster CLI client is essential for debugging tasks. It provides command
 
 **Check if already installed:**
 ```bash
-taskcluster --version
+taskcluster version
 ```
 
 **If not installed, install it:**
 
-For Linux (download latest release):
-```bash
-curl -L https://github.com/taskcluster/taskcluster/releases/latest/download/taskcluster-linux-amd64 -o /tmp/taskcluster
-chmod +x /tmp/taskcluster
-sudo mv /tmp/taskcluster /usr/local/bin/taskcluster
-```
-
-For macOS:
-```bash
-brew install taskcluster/tap/taskcluster
-```
+Download and extract the latest release depending on platform:
+https://github.com/taskcluster/taskcluster/releases/latest/download/taskcluster-darwin-amd64.tar.gz
+https://github.com/taskcluster/taskcluster/releases/latest/download/taskcluster-darin-armd64.tar.gz
+https://github.com/taskcluster/taskcluster/releases/latest/download/taskcluster-linux-amd64.tar.gz
+https://github.com/taskcluster/taskcluster/releases/latest/download/taskcluster-linux-arm64.tar.gz
+https://github.com/taskcluster/taskcluster/releases/latest/download/taskcluster-windows-amd64.zip
+https://github.com/taskcluster/taskcluster/releases/latest/download/taskcluster-windows-arm64.zip
 
 ### Configuration
 
@@ -56,23 +52,28 @@ export TASKCLUSTER_ROOT_URL=https://firefox-ci-tc.services.mozilla.com
 - `taskcluster task status <task-id>` - Check task status
 - `taskcluster help` - Show all available commands
 
+### Reproducing the Error
+
+**If the task has `implementation: docker-worker`**
+Use `taskgraph load-task --develop <task-id>` to run the task locally with your changes
+
+Important flags you may need:
+- `--develop`: Use local source at current revision (essential for testing changes)
+- `--interactive` / `-i`: Pause before task execution to inspect the environment
+- `--volume` / `-v`: Mount additional local paths (format: `HOST_DIR:CONTAINER_DIR`)
+- `--root` / `-r`: Specify relative path to taskgraph definition root
+- `--image`: Override task image with custom image, `task-id=<id>`, or `index=<path>`
+- `--keep`: Keep container after exit for post-mortem debugging
+- `--user`: Specify container user
+
+**Otherwise**
+Parse the command out of the task's definition and attempt to run it locally.
+
+If you are unable to reproduce, attempt to deduce the error as best you can.
+
 ## Workflow
 
-### 1. Setup Taskcluster CLI
-
-First, ensure the Taskcluster CLI is installed and configured:
-
-```bash
-# Check if installed
-taskcluster --version
-
-# If not, install it (see Installation section above)
-
-# Configure for Firefox CI
-export TASKCLUSTER_ROOT_URL=https://firefox-ci-tc.services.mozilla.com
-```
-
-### 2. Extract Task Information
+### 1. Extract Task Information
 
 From the user's message, extract the task ID. Task IDs conform to this regex pattern:
 ```
@@ -82,7 +83,7 @@ From the user's message, extract the task ID. Task IDs conform to this regex pat
 If the user provides a Taskcluster URL instead, extract the task ID from it:
 - Format: `https://firefox-ci-tc.services.mozilla.com/tasks/<task-id>`
 
-### 3. Fetch Task Information
+### 2. Fetch Task Information
 
 Use the Taskcluster CLI to gather information about the failing task:
 
@@ -112,7 +113,7 @@ taskcluster task status <task-id>
 
 This shows the current state and run information.
 
-### 4. Analyze the Error
+### 3. Analyze the Error
 
 After fetching the logs:
 1. Identify the root cause of the failure
@@ -124,45 +125,27 @@ After fetching the logs:
    - Environment issues
    - Command failures
 
-### 5. Determine Fix Strategy
+### 4. Determine Fix Strategy
 
 **If the solution is obvious** (e.g., syntax error, import error, simple logic bug):
 - Make the fix directly
 - Proceed to verification (step 6)
 
 **If the solution is NOT obvious**:
+
+First reproduce the error locally.
+
 - Add print/debug statements to relevant files
-- Use `taskgraph load-task --develop <task-id>` to run the task locally with your changes
 - Review the new debug output
 - Iterate: add more debugging, make fixes, re-run
 - Continue until the root cause is identified and fixed
 
-### 6. Verify the Fix
+### 5. Verify the Fix
 
-Once you've identified and implemented a fix:
+Once you've identified and implemented a fix, verify it using the same
+method as reproducing the failure.
 
-Run the task locally to verify:
-```bash
-taskgraph load-task <task-id>
-```
-
-**Important flags you may need:**
-- `--develop`: Use local source at current revision (essential for testing changes)
-- `--interactive` / `-i`: Pause before task execution to inspect the environment
-- `--volume` / `-v`: Mount additional local paths (format: `HOST_DIR:CONTAINER_DIR`)
-- `--root` / `-r`: Specify relative path to taskgraph definition root
-- `--image`: Override task image with custom image, `task-id=<id>`, or `index=<path>`
-- `--keep`: Keep container after exit for post-mortem debugging
-- `--user`: Specify container user
-
-**Typical verification command:**
-```bash
-taskgraph load-task --develop <task-id>
-```
-
-The task should complete successfully if your fix works.
-
-### 7. Clean Up
+### 6. Clean Up
 
 **Critical:** Before finishing, remove all debugging artifacts:
 - Delete or comment out any print/debug statements you added
@@ -171,7 +154,7 @@ The task should complete successfully if your fix works.
 
 **Important:** Do NOT re-run verification after cleanup. Trust that your fix works based on the previous successful run.
 
-### 8. Report Results
+### 7. Report Results
 
 Provide the user with:
 1. **Root cause**: Explain what was causing the failure
@@ -180,13 +163,6 @@ Provide the user with:
 4. **Files changed**: List the files you modified
 
 ## Tips and Best Practices
-
-### Using the Taskcluster CLI Effectively
-
-- Use `taskcluster task log <task-id>` to see the full task output
-- Use `taskcluster task def <task-id>` to inspect the task configuration
-- The task definition JSON shows exactly what command runs, what env vars are set, and what image is used
-- Task logs are streamed in real-time, so you see output as it would appear in CI
 
 ### Common Taskcluster Task Patterns
 
@@ -197,48 +173,12 @@ Provide the user with:
 
 ### Debugging Strategies
 
-1. **Start broad, narrow down**: Use print statements to trace execution flow
-2. **Check environment**: Verify environment variables, paths, and dependencies
-3. **Compare with passing tasks**: If similar tasks pass, diff their definitions
-4. **Read error messages carefully**: The actual error is often at the END of a traceback
-5. **Check recent changes**: Failures often correlate with recent commits
-
-### Using `--develop` Effectively
-
-The `--develop` flag is your most powerful tool:
-- It uses your LOCAL source at the CURRENT revision
-- You can make changes and immediately test them
-- No need to push commits or create CI tasks
-- Faster iteration cycle
+1. **Check environment**: Verify environment variables, paths, and dependencies
+2. **Compare with passing tasks**: If similar tasks pass, diff their definitions
+3. **Check recent changes**: Failures often correlate with recent commits
 
 ### Common Gotchas
 
-- Make sure Docker is running before using `load-task`
 - Some tasks require specific caches or volumes - check task definition
 - Network issues can cause transient failures - not all failures are code bugs
 - Some tasks have dependencies on other tasks - check if prerequisites succeeded
-
-## Example Interaction Flow
-
-```
-User: "Figure out what's wrong with task ABC123XYZ"
-
-1. Setup: Check `taskcluster --version`, set TASKCLUSTER_ROOT_URL
-2. Fetch logs: `taskcluster task log ABC123XYZ`
-3. Analyze: "ImportError: cannot import name 'foo' from 'bar'"
-4. Fix: Add missing import to bar/__init__.py
-5. Verify: Run `taskgraph load-task --develop ABC123XYZ`
-6. Success: Task completes without errors
-7. Clean up: No debug statements were added, so nothing to clean
-8. Report: "Fixed missing import in bar/__init__.py:15. Task now passes locally."
-```
-
-## Remember
-
-- Always use `--develop` when verifying fixes (so local changes are used)
-- Clean up ALL debugging artifacts before finishing
-- Don't re-verify after cleanup
-- Be methodical and thorough in your investigation
-- Document what you found and what you changed
-
-Now proceed with debugging the task based on the user's request!
