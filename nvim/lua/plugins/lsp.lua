@@ -112,7 +112,7 @@ return {
         'eslint',
         'lua_ls',
         'marksman',       -- markdown
-        'pyrefly',
+        'ty',
         'rust_analyzer',
         'taplo',          -- toml
       }
@@ -144,7 +144,7 @@ return {
           'eslint',         -- javascript
           'lua_ls',         -- lua
           'marksman',       -- markdown
-          'pyrefly',        -- python
+          'ty',             -- python
           'rust_analyzer',  -- rust
           'taplo',          -- toml
           'yamlls',         -- yaml

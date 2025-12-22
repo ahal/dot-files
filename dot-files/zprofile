@@ -14,6 +14,7 @@ path=(
     ~/opt/lua-language-server/bin
     ~/opt/protoc/bin
     ~/opt/neovim/bin
+    ~/opt/scrcpy
     /var/lib/flatpak/exports/bin
     $path
 )
