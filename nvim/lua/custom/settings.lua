@@ -36,8 +36,8 @@ vim.opt.undofile = true
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.keymap.set({'n', 'v'}, '<leader>;', '<cmd>AerialToggle!<CR>')
-vim.keymap.set('n', '<C-Left>', '<cmd>tabp<cr>')
-vim.keymap.set('n', '<C-Right>', '<cmd>tabn<cr>')
+vim.keymap.set('n', '<C-h>', '<cmd>tabp<cr>')
+vim.keymap.set('n', '<C-l>', '<cmd>tabn<cr>')
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")                -- move selection down
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")                -- move selection up
 vim.keymap.set('n', 'J', 'mzJ`z')                           -- keep cursor in-place

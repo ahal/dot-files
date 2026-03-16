@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//home/ahal/.local/share/nvim/lazy/**)",
+      "Read(//home/ahal/.config/kitty/**)",
+      "Bash(nvim:*)",
+      "Read(//tmp/**)",
+      "Bash(jj show:*)",
+      "Bash(direnv version:*)",
+      "Bash(direnv status:*)",
+      "Read(//home/ahal/dev/**)",
+      "Read(//home/ahal/bin/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

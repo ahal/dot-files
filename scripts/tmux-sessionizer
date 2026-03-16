@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+setup_layout() {
+    local session=$1
+    local dir=$2
+    tmux split-window -t $session:0 -h -p 40 -c "$dir" claude
+    tmux split-window -t $session:0 -v -c "$dir"
+    tmux select-pane -t $session:0.0
+    tmux send-keys -t $session:0.0 'nvim' Enter
+}
+
 if [[ $# -eq 1 ]]; then
     root_dir=~
     selected=$1
@@ -16,13 +25,16 @@ tmux_running=$(pgrep tmux)
 selected_root=$root_dir/$selected
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected -c $selected_root
+    tmux new-session -ds $selected -c $selected_root
+    setup_layout $selected $selected_root
+    tmux attach-session -t $selected
     #base16_chalk
     exit 0
 fi
 
 if ! tmux has-session -t=$selected 2> /dev/null; then
     tmux new-session -ds $selected -c $selected_root
+    setup_layout $selected $selected_root
 fi
 
 tmux switch-client -t $selected
