@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+"""Switch LG 45GX950A input source via DDC alt mode.
+
+System package dependencies:
+    ddcutil    - detects the i2c bus (https://www.ddcutil.com)
+    i2c-tools  - provides i2ctransfer for raw i2c writes
+
+Run without root:
+    sudo groupadd i2c
+    sudo usermod -aG i2c $USER
+    sudo sh -c 'echo KERNEL==\"i2c-[0-9]*\", GROUP=\"i2c\", MODE=\"0660\" > /etc/udev/rules.d/60-i2c.rules'
+    sudo udevadm control --reload-rules
+    sudo udevadm trigger
+    newgrp i2c
+
+Usage:
+    switch-input dp
+    switch-input hdmi1
+    switch-input hdmi2
+    switch-input usbc
+"""
+
+import re
+import subprocess
+import sys
+
+INPUTS = {
+    "hdmi1": 0x90,
+    "hdmi2": 0x91,
+    "dp":    0xD0,
+    "usbc":  0xD1,
+}
+
+
+def find_lg_bus():
+    result = subprocess.run(["ddcutil", "detect"], capture_output=True, text=True)
+    bus = None
+    for line in result.stdout.splitlines():
+        m = re.search(r"/dev/i2c-(\d+)", line)
+        if m:
+            bus = m.group(1)
+        if "mfg id" in line.lower() and "gsm" in line.lower():
+            return bus
+    sys.exit("Error: no LG monitor detected")
+
+
+def send(bus, lo):
+    reg, p0, p1, vcp, hi = 0x50, 0x84, 0x03, 0xF4, 0x00
+    chk = 0x6E ^ reg ^ p0 ^ p1 ^ vcp ^ hi ^ lo
+    cmd = ["i2ctransfer", "-y", str(bus), "w7@0x37",
+           *[f"0x{b:02X}" for b in [reg, p0, p1, vcp, hi, lo, chk]]]
+    subprocess.run(cmd, check=True)
+
+
+if len(sys.argv) != 2 or sys.argv[1] not in INPUTS:
+    print(f"Usage: {sys.argv[0]} [{' | '.join(INPUTS)}]")
+    sys.exit(1)
+
+
+send(find_lg_bus(), INPUTS[sys.argv[1]])
