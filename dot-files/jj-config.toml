@@ -1,11 +1,11 @@
 [user]
 name = "Andrew Halberstadt"
-email = "ahal@mozilla.com"
+email = "andrew@ahal.ca"
 
 [signing]
 behavior = "own" 
 backend = "gpg"
-key = "83871F16BEF61C4F2CA5CFFE186B1CE58780653F"
+key = "5DD9F0C21329EA09A0A3F238F09CA0E91C1042EC"
 
 [git]
 push = "ahal"

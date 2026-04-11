@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+"""Fixes missing monitor audio after VM boot with monitor already connected."""
+
+import subprocess
+import sys
+from pathlib import Path
+
+
+def find_connected_connector():
+    for status_path in Path("/sys/class/drm").glob("card1-*/status"):
+        if status_path.read_text().strip() == "connected":
+            return status_path.parent.name
+    return None
+
+
+def main():
+    connector = find_connected_connector()
+    if not connector:
+        print("No connected DRM connector found.", file=sys.stderr)
+        sys.exit(1)
+
+    print(f"Triggering hotplug detect on {connector}...")
+    subprocess.run(
+        ["sudo", "tee", f"/sys/class/drm/{connector}/status"],
+        input=b"detect",
+        check=True,
+        stdout=subprocess.DEVNULL,
+    )
+
+    print("Restarting PipeWire...")
+    subprocess.run(
+        ["systemctl", "--user", "restart", "pipewire", "wireplumber"],
+        check=True,
+    )
+
+    print("Done.")
+
+
+if __name__ == "__main__":
+    main()
