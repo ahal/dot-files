@@ -1,0 +1,17 @@
+# Repo infrastructure
+.git
+.jj
+.envrc
+.venv
+.claude
+.sync-conflict-*
+
+# Legacy / not managed by chezmoi
+dot-files
+zsh
+m-c
+llm
+scripts
+routines
+exemplify.toml
+memory

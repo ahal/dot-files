@@ -1,0 +1,27 @@
+#!/bin/bash
+{{ if not .enable_watchman }}exit 0{{ end }}
+set -euo pipefail
+
+VERSION="v2021.10.18.00"
+WORKDIR="$HOME/tmp/watchman"
+mkdir -p "$WORKDIR"
+cd "$WORKDIR"
+
+if [ ! -f "watchman-${VERSION}-linux.zip" ]; then
+  wget "https://github.com/facebook/watchman/releases/download/${VERSION}/watchman-${VERSION}-linux.zip"
+fi
+
+if [ ! -d "watchman-${VERSION}-linux" ]; then
+  unzip "watchman-${VERSION}-linux.zip"
+fi
+
+sudo mkdir -p /usr/local/{bin,lib} /usr/local/var/run/watchman
+sudo cp "watchman-${VERSION}-linux/bin/"* /usr/local/bin
+sudo cp "watchman-${VERSION}-linux/lib/"* /usr/local/lib
+sudo chmod 755 /usr/local/bin/watchman
+sudo chmod 2777 /usr/local/var/run/watchman
+
+if ! grep -q "max_user_watches" /etc/sysctl.conf; then
+  echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
+  sudo sysctl -p
+fi

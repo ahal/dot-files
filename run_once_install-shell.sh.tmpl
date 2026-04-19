@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+
+{{ if eq .chezmoi.osRelease.id "fedora" -}}
+sudo dnf install -y zsh tmux
+{{ else if eq .chezmoi.osRelease.id "ubuntu" -}}
+sudo apt-get install -y zsh tmux
+{{ end -}}
+
+# zgenom
+if [ ! -d "$HOME/.zgenom" ]; then
+  git clone https://github.com/jandamm/zgenom "$HOME/.zgenom"
+fi
+
+# cargo tools
+cargo install tealdeer exa ripgrep jless du-dust bat
