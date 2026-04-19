@@ -29,7 +29,7 @@ vim.o.smartcase = true
 -- Backup
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
+vim.opt.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
 vim.opt.undofile = true
 
 -- Key maps

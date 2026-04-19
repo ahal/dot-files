@@ -12,14 +12,11 @@ return {
     dependencies = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
-      'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lsp-signature-help',
-      'hrsh7th/cmp-nvim-lua',
     },
     config = function()
       local cmp = require('cmp')
-      local luasnip = require('luasnip')
 
       cmp.setup({
         sources = {
@@ -27,33 +24,31 @@ return {
           {name = 'nvim_lsp'},
           {name = 'nvim_lsp_signature_help'},
           {name = 'buffer', keyword_length = 3},
-          {name = 'luasnip', keyword_length = 2},
         },
         mapping = cmp.mapping.preset.insert({
-          -- `Enter` key to confirm completion
           ['<CR>'] = cmp.mapping.confirm({select = false}),
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.close(),
           ['<C-u>'] = cmp.mapping.scroll_docs(-4),
           ['<C-d>'] = cmp.mapping.scroll_docs(4),
           ["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		  end, {"i", "s"}),
-		  ["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		  end, {"i", "s"}),
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif vim.snippet.active({direction = 1}) then
+              vim.snippet.jump(1)
+            else
+              fallback()
+            end
+          end, {"i", "s"}),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif vim.snippet.active({direction = -1}) then
+              vim.snippet.jump(-1)
+            else
+              fallback()
+            end
+          end, {"i", "s"}),
         }),
         snippet = {
           expand = function(args)
@@ -74,11 +69,6 @@ return {
       {'williamboman/mason.nvim'},
       {'williamboman/mason-lspconfig.nvim'},
     },
-    init = function()
-      -- Reserve a space in the gutter
-      -- This will avoid an annoying layout shift in the screen
-      vim.opt.signcolumn = 'yes'
-    end,
     config = function()
       -- Get capabilities from cmp-nvim-lsp
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -170,10 +160,6 @@ return {
     'nvimtools/none-ls.nvim',
     dependencies = { 'jay-babu/mason-null-ls.nvim' },
   },
-
-  -- Snippets
-  { 'L3MON4D3/LuaSnip' },
-  { 'rafamadriz/friendly-snippets' },
 
   -- Useful status updates for LSP
   {
