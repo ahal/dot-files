@@ -3,8 +3,9 @@
 setup_layout() {
     local session=$1
     local dir=$2
-    tmux split-window -t $session:0 -h -p 40 -c "$dir" claude
-    tmux split-window -t $session:0 -v -c "$dir"
+    tmux split-window -t $session:0.0 -h -l 40% -c "$dir"
+    tmux split-window -t $session:0.1 -v -c "$dir"
+    tmux send-keys -t $session:0.1 'claude' Enter
     tmux select-pane -t $session:0.0
     tmux send-keys -t $session:0.0 'nvim' Enter
 }
