@@ -1,3 +1,6 @@
+sourceDir = {{ .chezmoi.sourceDir | quote }}
+mode = "symlink"
+
 [data]
-  enable_mozilla = false
-  enable_watchman = false
+  enable_mozilla = {{ promptBoolOnce . "enable_mozilla" "Enable Mozilla configuration" }}
+  enable_watchman = {{ promptBoolOnce . "enable_watchman" "Enable Watchman" }}
