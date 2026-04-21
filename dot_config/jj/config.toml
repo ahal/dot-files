@@ -55,7 +55,7 @@ git_push_bookmark = '"ahal/push-" ++ change_id.short()'
 
 [ui]
 default-command = "shortlog"
-editor = "nvim"
+editor = "/home/ahal/opt/neovim/bin/nvim"
 merge-editor = ["meld", "$left", "$base", "$right", "-o", "$output", "--auto-merge"]
 diff-formatter = ":git"
 

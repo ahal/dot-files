@@ -1,5 +1,6 @@
 [ui]
 no_ansi = False
+hyperlinks = True
 
 [vcs]
 safe_mode = False
@@ -15,16 +16,19 @@ command_path =
 auto_submit = True
 always_blocking = True
 warn_untracked = True
+ai_review = False
 
 [patch]
 apply_to = base
 create_bookmark = False
 create_topic = False
+create_branch = True
 always_full_stack = False
 branch_name_template = phab-D{rev_id}
+create_commit = True
 
 [updater]
-self_last_check = 1714509715
+self_last_check = 1776792009
 self_auto_update = True
 get_pre_releases = False
 arc_last_check = 0
