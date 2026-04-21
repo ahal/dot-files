@@ -1,11 +1,19 @@
 [user]
 name = "Andrew Halberstadt"
+{{ if .enable_mozilla -}}
+email = "ahalberstadt@mozilla.com"
+{{ else -}}
 email = "ahal@pm.me"
+{{ end -}}
 
 [signing]
-behavior = "own" 
+behavior = "own"
 backend = "gpg"
+{{ if .enable_mozilla -}}
+key = "83871F16BEF61C4F2CA5CFFE186B1CE58780653F"
+{{ else -}}
 key = "5DD9F0C21329EA09A0A3F238F09CA0E91C1042EC"
+{{ end -}}
 
 [git]
 push = "ahal"
