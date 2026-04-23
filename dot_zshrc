@@ -1,40 +1,11 @@
-# vars
-CONFIGDIR="${HOME}/dev/dot-files"
-export IS_WSL=false
-if uname -r | grep -q 'microsoft'; then
-  export IS_WSL=true
-  export WHOME=/mnt/c/Users/ahal
-  export DOWNLOADS=$WHOME/Downloads
-fi
-
 # zsh
-source "${HOME}/.zgenom/zgenom.zsh"
-alias zgen=zgenom
+source "${HOME}/.antidote/antidote.zsh"
+antidote load
 
-zgen autoupdate --background
-if ! zgen saved; then
-    # plugins
-    zgen load zsh-users/zsh-syntax-highlighting
-    zgen load zsh-users/zsh-history-substring-search
-
-    if $IS_WSL; then
-        zgen load bobsoppe/zsh-ssh-agent
-    fi
-
-    # completions
-    zgen load zsh-users/zsh-completions src
-    zgen load "${HOME}/.config/zsh/completion.zsh"
-
-    # theme
-    zgen load "${HOME}/.config/zsh/theme-and-appearance.zsh"
-    zgen load "${HOME}/.config/zsh/ahal.zsh-theme"
-
-    # history
-    zgen load "${HOME}/.config/zsh/history.zsh"
-
-    # save all to init script
-    zgen save
-fi
+source "${HOME}/.config/zsh/completion.zsh"
+source "${HOME}/.config/zsh/theme-and-appearance.zsh"
+source "${HOME}/.config/zsh/ahal.zsh-theme"
+source "${HOME}/.config/zsh/history.zsh"
 
 unsetopt correct_all
 setopt no_banghist
@@ -81,7 +52,7 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 # source
 setopt PROMPT_SUBST
-source "${CONFIGDIR}/scripts/scm-prompt.sh"
+source "${HOME}/bin/scm-prompt.sh"
 #source `which mozconfigwrapper.sh`
 
 # tab completion
@@ -136,30 +107,10 @@ function clear-scrollback-buffer {
 zle -N clear-scrollback-buffer
 bindkey '^L' clear-scrollback-buffer
 
-if $IS_WSL; then
-    notify-send() {
-        wsl-notify-send.exe --category $WSL_DISTRO_NAME "${@}";
-    }
-
-    fix_wsl2_interop() {
-        for i in $(pstree -np -s | grep "tmux: client" | grep -o -E '[0-9]+'); do
-            if [[ -e "/run/WSL/${i}_interop" ]]; then
-                export WSL_INTEROP=/run/WSL/${i}_interop
-            fi
-        done
-    }
-    fix_wsl2_interop
-fi
-
 # environment variables
 export EDITOR="nvim"
 
-# set DISPLAY properly
-if $IS_WSL; then
-    export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
-else
-    export DISPLAY=localhost:0.0
-fi
+export DISPLAY=localhost:0.0
 
 # uv
 

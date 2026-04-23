@@ -7,9 +7,9 @@ sudo dnf install -y zsh tmux
 sudo apt-get install -y zsh tmux
 {{ end -}}
 
-# zgenom
-if [ ! -d "$HOME/.zgenom" ]; then
-  git clone https://github.com/jandamm/zgenom "$HOME/.zgenom"
+# antidote
+if [ ! -d "$HOME/.antidote" ]; then
+  git clone --depth=1 https://github.com/mattmc3/antidote.git "$HOME/.antidote"
 fi
 
 # cargo tools

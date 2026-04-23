@@ -1,3 +1,8 @@
-nvim/.netrwhist
-nvim/lazy-lock.json
-nvim/spell
+.claude
+.envrc
+.sync-conflict-*
+.venv
+
+dot_config/nvim/.netrwhist
+dot_config/nvim/lazy-lock.json
+dot_config/nvim/spell
