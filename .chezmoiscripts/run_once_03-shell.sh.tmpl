@@ -6,5 +6,12 @@ if [ ! -d "$HOME/.antidote" ]; then
   git clone --depth=1 https://github.com/mattmc3/antidote.git "$HOME/.antidote"
 fi
 
-# cargo tools
-cargo install tealdeer exa ripgrep jless du-dust bat
+# rust tools
+cargo install \
+  bat \
+  du-dust \
+  exa \
+  fd-find \
+  jless \
+  ripgrep \
+  tealdeer
