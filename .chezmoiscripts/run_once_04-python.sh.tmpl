@@ -1,8 +1,0 @@
-#!/bin/bash
-set -euo pipefail
-
-{{ if eq .chezmoi.osRelease.id "fedora" -}}
-sudo dnf install -y \
-  bzip2 bzip2-devel readline-devel sqlite sqlite-devel \
-  openssl-devel python3-devel xz xz-devel zlib-devel
-{{ end -}}

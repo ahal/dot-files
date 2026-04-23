@@ -4,9 +4,21 @@ set -euo pipefail
 mkdir -p "$HOME/bin"
 
 {{ if eq .chezmoi.osRelease.id "fedora" -}}
-sudo dnf install -y ddcutil
+sudo dnf install -y \
+  ddcutil \
+  libxcb-devel \
+  python3-devel \
+  tmux \
+  zsh
 {{ else if eq .chezmoi.osRelease.id "ubuntu" -}}
-sudo apt-get install -y ddcutil
+sudo apt-get install -y \
+  ddcutil \
+  libxcb1-dev \
+  libxcb-render0-dev \
+  libxcb-shape0-dev \
+  libxcb-xfixes0-dev \
+  tmux \
+  zsh
 {{ end -}}
 
 # tmux plugin manager
