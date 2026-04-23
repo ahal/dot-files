@@ -1,0 +1,5 @@
+[mach_telemetry]
+is_employee = true
+is_enabled = true
+is_set_up = true
+

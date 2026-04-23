@@ -11,5 +11,6 @@ README.md
 dot_config/nvim/lazy-lock.json
 
 {{ if not .enable_mozilla }}
+dot_mozbuild
 dot_mozconfigs
 {{ end }}
