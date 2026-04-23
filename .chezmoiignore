@@ -13,7 +13,6 @@ dot_config/nvim/lazy-lock.json
 dot-files
 zsh
 m-c
-llm
 scripts
 routines
 exemplify.toml
