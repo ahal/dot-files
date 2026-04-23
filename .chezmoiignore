@@ -8,6 +8,3 @@
 
 # Managed locally, not synced across machines
 dot_config/nvim/lazy-lock.json
-
-# Legacy / not managed by chezmoi
-zsh

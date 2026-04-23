@@ -23,14 +23,14 @@ if ! zgen saved; then
 
     # completions
     zgen load zsh-users/zsh-completions src
-    zgen load "${CONFIGDIR}/zsh/completion.zsh"
+    zgen load "${HOME}/.config/zsh/completion.zsh"
 
     # theme
-    zgen load "${CONFIGDIR}/zsh/theme-and-appearance.zsh"
-    zgen load "${CONFIGDIR}/zsh/ahal.zsh-theme"
+    zgen load "${HOME}/.config/zsh/theme-and-appearance.zsh"
+    zgen load "${HOME}/.config/zsh/ahal.zsh-theme"
 
     # history
-    zgen load "${CONFIGDIR}/zsh/history.zsh"
+    zgen load "${HOME}/.config/zsh/history.zsh"
 
     # save all to init script
     zgen save
