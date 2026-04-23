@@ -12,7 +12,6 @@ dot_config/nvim/lazy-lock.json
 # Legacy / not managed by chezmoi
 dot-files
 zsh
-m-c
 scripts
 routines
 exemplify.toml
