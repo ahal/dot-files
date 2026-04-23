@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-VERSION="0.12.1"
+VERSION="0.12.2"
 CURRENT=$(nvim --version 2>/dev/null | grep -oP 'NVIM \Kv\S+' || echo "none")
 
 if [ "v${VERSION}" = "$CURRENT" ]; then
