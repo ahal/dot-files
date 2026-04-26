@@ -21,6 +21,5 @@ node_modules
 /objdirs
 /obj-*
 /ty.toml
-/CLAUDE.md
 .claude
 .pnpm-store
