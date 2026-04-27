@@ -6,7 +6,10 @@ mkdir -p "$HOME/bin"
 {{ if eq .chezmoi.osRelease.id "fedora" -}}
 sudo dnf install -y \
   ddcutil \
+  direnv \
+  gcc \
   libxcb-devel \
+  git \
 {{ if not .enable_mozilla -}}
   mangohud \
 {{ end -}}
@@ -16,15 +19,19 @@ sudo dnf install -y \
   zsh
 {{ else if eq .chezmoi.osRelease.id "ubuntu" -}}
 sudo apt-get install -y \
+  build-essential \
   ddcutil \
+  direnv \
   libxcb1-dev \
   libxcb-render0-dev \
   libxcb-shape0-dev \
   libxcb-xfixes0-dev \
+  git \
 {{ if not .enable_mozilla -}}
   mangohud \
 {{ end -}}
   meld \
+  scdaemon \
   tmux \
   zsh
 {{ end -}}

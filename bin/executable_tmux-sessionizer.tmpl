@@ -3,7 +3,9 @@
 setup_layout() {
     local session=$1
     local dir=$2
-    tmux split-window -t $session:0.0 -h -l 40% -c "$dir"
+    # tmux percentage sizing is broken on Ubuntu, requiring a smaller value to get ~40% visually
+    tmux split-window -t $session:0.0 -h -c "$dir"
+    tmux resize-pane -t $session:0.1 -x {{ if eq .chezmoi.osRelease.id "ubuntu" }}10%{{ else }}40%{{ end }}
     tmux split-window -t $session:0.1 -v -c "$dir"
     tmux send-keys -t $session:0.1 'claude' Enter
     tmux select-pane -t $session:0.0

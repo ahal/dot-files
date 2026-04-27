@@ -7,6 +7,8 @@ if [ ! -d "$HOME/.antidote" ]; then
 fi
 
 # rust tools
+# shellcheck source=/dev/null
+source "$HOME/.cargo/env"
 cargo install \
   bat \
   du-dust \

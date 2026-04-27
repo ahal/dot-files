@@ -1,0 +1,12 @@
+#!/bin/bash
+set -euo pipefail
+
+if command -v ghostty &> /dev/null; then
+  exit 0
+fi
+
+{{ if eq .chezmoi.osRelease.id "fedora" -}}
+sudo dnf install -y ghostty
+{{ else if eq .chezmoi.osRelease.id "ubuntu" -}}
+sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)"
+{{ end -}}
