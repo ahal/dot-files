@@ -1,4 +1,4 @@
-# dot-files
+# chezmoi 
 
 Personal dotfiles managed with [chezmoi](https://chezmoi.io).
 
@@ -7,7 +7,7 @@ Personal dotfiles managed with [chezmoi](https://chezmoi.io).
 Install chezmoi, then run:
 
 ```sh
-chezmoi init --apply https://github.com/ahal/dot-files
+chezmoi init --apply https://github.com/ahal/chezmoi
 ```
 
 You will be prompted for a few options:
