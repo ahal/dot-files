@@ -7,6 +7,9 @@ mkdir -p "$HOME/bin"
 sudo dnf install -y \
   ddcutil \
   libxcb-devel \
+{{ if not .enable_mozilla -}}
+  mangohud \
+{{ end -}}
   meld \
   python3-devel \
   tmux \
@@ -18,6 +21,9 @@ sudo apt-get install -y \
   libxcb-render0-dev \
   libxcb-shape0-dev \
   libxcb-xfixes0-dev \
+{{ if not .enable_mozilla -}}
+  mangohud \
+{{ end -}}
   meld \
   tmux \
   zsh

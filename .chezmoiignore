@@ -13,4 +13,6 @@ dot_config/nvim/lazy-lock.json
 {{ if not .enable_mozilla }}
 dot_mozbuild
 dot_mozconfigs
+{{ else }}
+dot_config/environment.d/mangohud.conf
 {{ end }}
