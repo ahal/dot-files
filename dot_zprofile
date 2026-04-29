@@ -8,7 +8,7 @@ path=(
     ~/.mozbuild/git-cinnabar
     ~/.mozbuild/moz-phab/arcanist/bin
     ~/.mozbuild/version-control-tools/git/commands
-    ~/.npm-global/bin
+    ~/.config/npm/bin
     ~/.tmux/plugins/tmux-xpanes/bin
     ~/go/bin
     ~/opt/lua-language-server/bin
