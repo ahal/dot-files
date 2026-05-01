@@ -1,14 +1,5 @@
 # Repo infrastructure
-.git
-.jj
-.envrc
-.venv
-.claude
-.sync-conflict-*
 README.md
-
-# Managed locally, not synced across machines
-dot_config/nvim/lazy-lock.json
 
 {{ if not .enable_mozilla }}
 dot_mozbuild
