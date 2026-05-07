@@ -4,22 +4,9 @@ path=(
     ~/.local/bin
     ~/.cargo/bin
     ~/.config/fzf/bin
-    ~/.poetry/bin
-    ~/.mozbuild/git-cinnabar
-    ~/.mozbuild/moz-phab/arcanist/bin
-    ~/.mozbuild/version-control-tools/git/commands
     ~/.config/npm/bin
-    ~/.tmux/plugins/tmux-xpanes/bin
     ~/go/bin
-    ~/opt/lua-language-server/bin
-    ~/opt/protoc/bin
     ~/opt/neovim/bin
-    ~/opt/scrcpy
     /var/lib/flatpak/exports/bin
     $path
 )
-
-# Note: WSL does not currently apply umask properly.
-if [ "$(umask)" = "000" ]; then
-    umask 022
-fi
