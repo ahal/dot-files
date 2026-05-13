@@ -41,6 +41,12 @@ tc-signin () {
                 "hooks:trigger-hook:*"
             )
             ;;
+        tooltool)
+            expiry="15m"
+            scopes=(
+                "project:releng:services/tooltool/*"
+            )
+            ;;
         root)
             expiry="15m"
             scopes=(
